@@ -6,8 +6,9 @@ on:
       - created
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required for gh release upload
 
     steps:
       - uses: actions/checkout@v5
