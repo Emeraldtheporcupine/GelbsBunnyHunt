@@ -62,7 +62,7 @@ function SetupLevel () {
         music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-        for (let ShovelToBe of tiles.getTilesByType(assets.tile`myTile`)) {
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`transparency16`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
             tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
