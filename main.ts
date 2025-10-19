@@ -7,7 +7,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     if (Gelb.vy > 0) {
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-        info.changeScoreBy(1)
+        info.changeScoreBy(-1)
         Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
         BunnyAmount += -1
         for (let index = 0; index <= 40; index++) {
@@ -29,6 +29,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
             Key.setPosition(otherSprite.x, otherSprite.y)
             Key.vy = -250
             Key.ay = 400
+            Key.vx = 20
             animation.runImageAnimation(
             Key,
             assets.animation`Key Spin`,
@@ -46,12 +47,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
         music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
+        HasKey = true
         sprites.destroy(otherSprite)
     }
 })
 function SetupLevel () {
     if (Level == 1) {
+        info.setScore(10)
         BunnyAmount = 10
+        HasKey = false
         scene.setBackgroundImage(assets.image`LVL one`)
         tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
@@ -62,7 +66,7 @@ function SetupLevel () {
         music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-        for (let ShovelToBe of tiles.getTilesByType(assets.tile`transparency16`)) {
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
             tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
@@ -87,6 +91,14 @@ function SetupLevel () {
         }
     }
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
+    if (HasKey == true) {
+        music.stopAllSounds()
+        controller.moveSprite(Gelb, 0, 0)
+        tiles.placeOnTile(Gelb, location)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.UntilDone)
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
     music.setVolume(255)
     music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
@@ -99,8 +111,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     }
 })
+info.onScore(0, function () {
+	
+})
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
+let HasKey = false
 let Key: Sprite = null
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
