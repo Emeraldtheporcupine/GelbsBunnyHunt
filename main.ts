@@ -1,12 +1,15 @@
 namespace SpriteKind {
     export const Shovel = SpriteKind.create()
     export const Gibblets = SpriteKind.create()
+    export const Key = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (Gelb.vy > 0) {
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        info.changeScoreBy(1)
         Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+        BunnyAmount += -1
         for (let index = 0; index <= 40; index++) {
             Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
         }
@@ -21,6 +24,18 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
             })
         }
         Gelb.vy = -100
+        if (BunnyAmount == 0) {
+            Key = sprites.create(assets.image`Key`, SpriteKind.Key)
+            Key.setPosition(otherSprite.x, otherSprite.y)
+            Key.vy = -150
+            Key.ay = 400
+            animation.runImageAnimation(
+            Key,
+            assets.animation`Key Spin`,
+            100,
+            true
+            )
+        }
         sprites.destroy(otherSprite, effects.none, 0)
         music.setVolume(100)
     } else {
@@ -29,11 +44,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 function SetupLevel () {
     if (Level == 1) {
+        BunnyAmount = 10
         scene.setBackgroundImage(assets.image`LVL one`)
-        Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-        controller.moveSprite(Gelb, 75, 0)
-        Gelb.ay = 400
-        scene.cameraFollowSprite(Gelb)
         tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
         scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
@@ -41,6 +53,8 @@ function SetupLevel () {
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`myTile`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -70,7 +84,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherS
     music.setVolume(255)
     music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     sprites.destroy(otherSprite, effects.none, 0)
-    info.changeScoreBy(1)
     music.setVolume(40)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -81,10 +94,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
+let Key: Sprite = null
+let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let Gelb: Sprite = null
 let Level = 0
 Level = 1
+Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+controller.moveSprite(Gelb, 75, 0)
+Gelb.ay = 400
+scene.cameraFollowSprite(Gelb)
 SetupLevel()
 game.onUpdateInterval(randint(0, 2000), function () {
     for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
@@ -92,6 +111,7 @@ game.onUpdateInterval(randint(0, 2000), function () {
             if (BunnyToJump.vy == 0) {
                 BunnyToJump.vy = -250
                 BunnyToJump.vx = 100
+                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
             }
             animation.runImageAnimation(
             BunnyToJump,
@@ -103,6 +123,7 @@ game.onUpdateInterval(randint(0, 2000), function () {
             if (BunnyToJump.vy == 0) {
                 BunnyToJump.vy = -250
                 BunnyToJump.vx = -100
+                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
             }
             animation.runImageAnimation(
             BunnyToJump,
