@@ -53,8 +53,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSpri
 })
 function SetupLevel () {
     if (Level == 1) {
-        info.setScore(10)
-        BunnyAmount = 10
+        color.setPalette(
+        color.originalPalette
+        )
+        info.setScore(1)
+        BunnyAmount = 1
         HasKey = false
         scene.setBackgroundImage(assets.image`LVL one`)
         tiles.setCurrentTilemap(tilemap`level1`)
@@ -89,14 +92,60 @@ function SetupLevel () {
             true
             )
         }
+    } else if (Level == 2) {
+        info.setScore(1)
+        BunnyAmount = 1
+        HasKey = false
+        scene.setBackgroundImage(assets.image`LVL one`)
+        tiles.setCurrentTilemap(tilemap`level1`)
+        tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
+        scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
+        scroller.setCameraScrollingMultipliers(0.1, 0.1)
+        music.setVolume(50)
+        music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
+        music.setVolume(100)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
+            ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
+            tiles.placeOnTile(ShovelCollectable, ShovelToBe)
+            tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            ShovelCollectable,
+            assets.animation`Shovel Spin`,
+            100,
+            true
+            )
+        }
+        for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
+            Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
+            Bunny.ay = 400
+            tiles.placeOnTile(Bunny, BunnySpawn)
+            tiles.setTileAt(BunnySpawn, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            Bunny,
+            assets.animation`CUTE BUNBUN R`,
+            200,
+            true
+            )
+        }
+    } else {
+    	
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
     if (HasKey == true) {
+        HasKey = false
         music.stopAllSounds()
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
-        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.UntilDone)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
+        timer.after(4000, function () {
+            color.startFade(color.originalPalette, color.Black, 1000)
+            Level += 1
+            SetupLevel()
+            color.startFade(color.Black, color.originalPalette, 1000)
+        })
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
