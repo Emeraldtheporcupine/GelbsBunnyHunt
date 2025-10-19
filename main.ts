@@ -4,7 +4,7 @@ namespace SpriteKind {
     export const Key = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (Gelb.vy > 0) {
+    if (Gelb.vy - 8 > 0) {
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
         info.changeScoreBy(-1)
@@ -82,7 +82,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            50,
             true
             )
         }
@@ -118,7 +118,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            50,
             true
             )
         }
@@ -193,13 +193,32 @@ let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let Gelb: Sprite = null
 let Level = 0
+let AnimationArray1 = img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . 3 3 3 . . . . 
+    . . . . . . . . 3 . . . . . . . 
+    . . 3 3 3 3 3 3 . . 3 . . . . . 
+    . . . . 3 . . . . . 3 . . . . . 
+    . . . . 3 . . . . . 3 . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . 3 3 3 . . . . . . . 
+    . . . . . 3 . . . 3 . . . . . . 
+    . . . . 3 . . . . . 3 . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `
+let AnimationArray2 = assets.image`Shovel Overlay`
 Level = 1
 Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
 controller.moveSprite(Gelb, 75, 0)
 Gelb.ay = 400
 scene.cameraFollowSprite(Gelb)
 SetupLevel()
-game.onUpdateInterval(randint(0, 2000), function () {
+game.onUpdateInterval(randint(500, 2000), function () {
     for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
         if (sprites.readDataString(BunnyToJump, "Jump") == "Left") {
             if (BunnyToJump.vy == 0) {

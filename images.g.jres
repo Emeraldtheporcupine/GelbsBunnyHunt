@@ -54,6 +54,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "EarPiece"
     },
+    "image12": {
+        "data": "hwQPAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwMAAAAAADAu8sAAAAAAMDLywAAAAAAwMzMAAAAAAAA4A4AAAAAAADgDgAAAAAAAAAOAAAAAAAA4A4AAAAAAADgDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Shovel Overlay"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",
