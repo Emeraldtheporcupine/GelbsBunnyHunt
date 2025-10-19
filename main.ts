@@ -6,11 +6,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     if (Gelb.vy > 0) {
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+        Gibblets2 = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
         for (let index = 0; index <= 40; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+            Gibblets2.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
         }
-        for (let GibbletSprite of Gibblets) {
+        for (let GibbletSprite of Gibblets2) {
             GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
             GibbletSprite.vy = randint(-150, -100)
             GibbletSprite.ay = 400
@@ -29,11 +29,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 function SetupLevel () {
     if (Level == 1) {
-        scene.setBackgroundImage(assets.image`LVL one`)
-        Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-        controller.moveSprite(Gelb, 75, 0)
-        Gelb.ay = 400
-        scene.cameraFollowSprite(Gelb)
         tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
         scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
@@ -66,6 +61,13 @@ function SetupLevel () {
         }
     }
 }
+function Setup () {
+    scene.setBackgroundImage(assets.image`LVL one`)
+    Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+    controller.moveSprite(Gelb, 75, 0)
+    Gelb.ay = 400
+    scene.cameraFollowSprite(Gelb)
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
     music.setVolume(255)
     music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
@@ -81,10 +83,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
-let Gibblets: Sprite[] = []
+let Gibblets2: Sprite[] = []
 let Gelb: Sprite = null
 let Level = 0
 Level = 1
+Setup()
 SetupLevel()
 game.onUpdateInterval(randint(0, 2000), function () {
     for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
