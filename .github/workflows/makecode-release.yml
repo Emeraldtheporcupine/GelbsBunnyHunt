@@ -53,7 +53,7 @@ jobs:
 
       - name: bundle all
         run: |
-          cat binary-*.uf2 > built/arcade.uf2
+          cat binary-*.uf2 > ./built/arcade.uf2
 
       - name: Upload Release Assets
         env:
