@@ -27,7 +27,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         if (BunnyAmount == 0) {
             Key = sprites.create(assets.image`Key`, SpriteKind.Key)
             Key.setPosition(otherSprite.x, otherSprite.y)
-            Key.vy = -150
+            Key.vy = -250
             Key.ay = 400
             animation.runImageAnimation(
             Key,
@@ -35,11 +35,18 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
             100,
             true
             )
+            music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
         }
         sprites.destroy(otherSprite, effects.none, 0)
         music.setVolume(100)
     } else {
     	
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
+    if (otherSprite.vy == 0) {
+        music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
+        sprites.destroy(otherSprite)
     }
 })
 function SetupLevel () {
