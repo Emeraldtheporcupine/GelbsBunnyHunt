@@ -29,6 +29,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Shovel"
     },
+    "image7": {
+        "data": "hwQPAA8AAAAAAAAAAADQAAAAAAAAAN0NAAAAu7u72w2wC7C7u7u7DbDbu7u7u7sLsN27u7tLuwuwu7u7u0u+CwAAu/v/6+QLsLu7G/FLRAuw3bu7u7NOC7Dbu/v/S+QLsAuwG/F7dwcAAAC7u7cHAAAAAAAAAHAAAAAAAAAAAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "BunCarrot"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",

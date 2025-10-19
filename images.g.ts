@@ -236,6 +236,24 @@ e e e . . . . .
 . . c b b b c b 
 . . . c c b b b 
 `;
+            case "image7":
+            case "BunCarrot":return img`
+. . . . . . . . . . . . . . . 
+. . . b b b b . b b b b . . . 
+. . . b b d b . b d b b . . . 
+. . . . d d b . b d d . . . . 
+. . . . b b b b b b b . . . . 
+. . . b b b b b b b b b . . . 
+. . b b b b b b b b b b b . . 
+. . b b b b b f 1 b f 1 b . . 
+. . b b b b b f 1 b f 1 b . . 
+. . b b b b b f f b f f b . . 
+. . b b b b b b b 3 b b 7 . . 
+. . b b b 4 4 e 4 b 4 7 b . . 
+. d b b b b e 4 4 e 4 7 7 . . 
+d d d b b b b e 4 4 e 7 . 7 . 
+. d d d b b b b b b b 7 . . . 
+`;
         }
         return null;
     })
