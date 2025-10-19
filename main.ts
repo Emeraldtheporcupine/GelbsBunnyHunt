@@ -25,13 +25,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         }
         Gelb.vy = -100
         if (BunnyAmount == 0) {
-            Key = sprites.create(assets.image`Key`, SpriteKind.Key)
-            Key.setPosition(otherSprite.x, otherSprite.y)
-            Key.vy = -250
-            Key.ay = 400
-            Key.vx = 20
+            LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
+            LVL1key.setPosition(otherSprite.x, otherSprite.y)
+            LVL1key.vy = -250
+            LVL1key.ay = 400
+            LVL1key.vx = 20
             animation.runImageAnimation(
-            Key,
+            LVL1key,
             assets.animation`Key Spin`,
             100,
             true
@@ -96,7 +96,7 @@ function SetupLevel () {
         info.setScore(1)
         BunnyAmount = 1
         HasKey = false
-        scene.setBackgroundImage(assets.image`LVL one`)
+        scene.setBackgroundImage(assets.image`LVL two`)
         tiles.setCurrentTilemap(tilemap`level1`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
         scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
@@ -166,7 +166,7 @@ info.onScore(0, function () {
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
 let HasKey = false
-let Key: Sprite = null
+let LVL1key: Sprite = null
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let Gelb: Sprite = null
