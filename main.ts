@@ -10,9 +10,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         info.changeScoreBy(-1)
         Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
         BunnyAmount += -1
-        for (let index = 0; index <= 40; index++) {
+        for (let index = 0; index <= 30; index++) {
             Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
         }
+        for (let index = 0; index <= 9; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
+        }
+        Gibblets.unshift(sprites.create(assets.image`EarPiece`, SpriteKind.Gibblets))
         for (let GibbletSprite of Gibblets) {
             GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
             GibbletSprite.vy = randint(-150, -100)
@@ -25,18 +29,20 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         }
         Gelb.vy = -100
         if (BunnyAmount == 0) {
-            LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
-            LVL1key.setPosition(otherSprite.x, otherSprite.y)
-            LVL1key.vy = -250
-            LVL1key.ay = 400
-            LVL1key.vx = 20
-            animation.runImageAnimation(
-            LVL1key,
-            assets.animation`Key Spin`,
-            100,
-            true
-            )
             music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
+            if (Level == 1) {
+                LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
+                LVL1key.setPosition(otherSprite.x, otherSprite.y)
+                LVL1key.vy = -250
+                LVL1key.ay = 400
+                LVL1key.vx = 20
+                animation.runImageAnimation(
+                LVL1key,
+                assets.animation`Key Spin`,
+                100,
+                true
+                )
+            }
         }
         sprites.destroy(otherSprite, effects.none, 0)
         music.setVolume(100)
@@ -93,16 +99,15 @@ function SetupLevel () {
             )
         }
     } else if (Level == 2) {
-        info.setScore(1)
-        BunnyAmount = 1
         HasKey = false
+        controller.moveSprite(Gelb, 75, 0)
         scene.setBackgroundImage(assets.image`LVL two`)
-        tiles.setCurrentTilemap(tilemap`level1`)
+        tiles.setCurrentTilemap(tilemap`level2`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
         scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
         scroller.setCameraScrollingMultipliers(0.1, 0.1)
         music.setVolume(50)
-        music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
+        music.play(music.createSong(assets.song`The Shed`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
@@ -132,10 +137,27 @@ function SetupLevel () {
     } else {
     	
     }
+    info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
+    BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
     if (HasKey == true) {
         HasKey = false
+        music.stopAllSounds()
+        controller.moveSprite(Gelb, 0, 0)
+        tiles.placeOnTile(Gelb, location)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
+        timer.after(4000, function () {
+            color.startFade(color.originalPalette, color.Black, 1000)
+            Level += 1
+            SetupLevel()
+            color.startFade(color.Black, color.originalPalette, 1000)
+        })
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, location) {
+    if (BunnyAmount == 0) {
+        BunnyAmount = 1
         music.stopAllSounds()
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
