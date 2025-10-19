@@ -27,6 +27,45 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     	
     }
 })
+function SetupLevel () {
+    if (Level == 1) {
+        scene.setBackgroundImage(assets.image`LVL one`)
+        Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+        controller.moveSprite(Gelb, 75, 0)
+        Gelb.ay = 400
+        scene.cameraFollowSprite(Gelb)
+        tiles.setCurrentTilemap(tilemap`level1`)
+        tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
+        scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
+        scroller.setCameraScrollingMultipliers(0.1, 0.1)
+        music.setVolume(50)
+        music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
+        music.setVolume(100)
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`myTile`)) {
+            ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
+            tiles.placeOnTile(ShovelCollectable, ShovelToBe)
+            tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            ShovelCollectable,
+            assets.animation`Shovel Spin`,
+            100,
+            true
+            )
+        }
+        for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
+            Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
+            Bunny.ay = 400
+            tiles.placeOnTile(Bunny, BunnySpawn)
+            tiles.setTileAt(BunnySpawn, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            Bunny,
+            assets.animation`CUTE BUNBUN R`,
+            200,
+            true
+            )
+        }
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
     music.setVolume(255)
     music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
@@ -40,45 +79,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
     }
 })
-let Gibblets: Sprite[] = []
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
+let Gibblets: Sprite[] = []
 let Gelb: Sprite = null
-scene.setBackgroundImage(assets.image`LVL one`)
-Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-controller.moveSprite(Gelb, 75, 0)
-Gelb.ay = 400
-scene.cameraFollowSprite(Gelb)
-tiles.setCurrentTilemap(tilemap`level1`)
-tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
-scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
-scroller.setCameraScrollingMultipliers(0.1, 0.1)
-music.setVolume(50)
-music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
-music.setVolume(100)
-for (let ShovelToBe of tiles.getTilesByType(assets.tile`myTile`)) {
-    ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
-    tiles.placeOnTile(ShovelCollectable, ShovelToBe)
-    tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
-    animation.runImageAnimation(
-    ShovelCollectable,
-    assets.animation`Shovel Spin`,
-    100,
-    true
-    )
-}
-for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
-    Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
-    Bunny.ay = 400
-    tiles.placeOnTile(Bunny, BunnySpawn)
-    tiles.setTileAt(BunnySpawn, assets.tile`transparency16`)
-    animation.runImageAnimation(
-    Bunny,
-    assets.animation`CUTE BUNBUN R`,
-    200,
-    true
-    )
-}
+let Level = 0
+Level = 1
+SetupLevel()
 game.onUpdateInterval(randint(0, 2000), function () {
     for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
         if (sprites.readDataString(BunnyToJump, "Jump") == "Left") {
