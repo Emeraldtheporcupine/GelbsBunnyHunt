@@ -54,7 +54,7 @@ tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
 scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
 scroller.setCameraScrollingMultipliers(0.1, 0.1)
 music.setVolume(50)
-music.play(music.createSong(assets.song`LVL 1`), music.PlaybackMode.LoopingInBackground)
+music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
 music.setVolume(100)
 for (let ShovelToBe of tiles.getTilesByType(assets.tile`myTile`)) {
     ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
@@ -86,11 +86,23 @@ game.onUpdateInterval(randint(0, 2000), function () {
                 BunnyToJump.vy = -250
                 BunnyToJump.vx = 100
             }
+            animation.runImageAnimation(
+            BunnyToJump,
+            assets.animation`CUTE BUNBUN R`,
+            200,
+            true
+            )
         } else if (sprites.readDataString(BunnyToJump, "Jump") == "Right") {
             if (BunnyToJump.vy == 0) {
                 BunnyToJump.vy = -250
                 BunnyToJump.vx = -100
             }
+            animation.runImageAnimation(
+            BunnyToJump,
+            assets.animation`CUTE BUNBUN L`,
+            200,
+            true
+            )
         }
         sprites.setDataString(BunnyToJump, "Jump", "")
     }
