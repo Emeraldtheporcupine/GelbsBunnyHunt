@@ -417,176 +417,154 @@ b b b b
 . . . . c c c . . . . . . . . 
 . . . . . . . . . . . . . . . 
 `;
+            case "yn2!W":
+            case "THE ROCK":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . 3 3 3 . . . . 
+. . . . . . . . 3 . . . . . . . 
+. . 3 3 3 3 3 3 . . 3 . . . . . 
+. . . . 3 . . . . . 3 . . . . . 
+. . . . 3 . . . . . 3 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . 3 . . . 3 . . . . . . 
+. . . . 3 . . . . . 3 . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image13":
+            case "The Tunnel":return img`
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccffffffffffccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffcccccccccccccccccccccccccccccccccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffcccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffffffffffffcccccccccccccccccccccccccccccccffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+fffffffffffffffffccccccccccffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffccccccccccccccccccccfffffffffffffffffffffffffffffffffffffffffcccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+`;
         }
         return null;
     })
 
     helpers._registerFactory("animation", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "Shovel Spin":
-            case "anim1":return [img`
-e e . . . . . . 
-e e e . . . . . 
-. e e e . d d . 
-. . e e e b b d 
-. . . e c b b b 
-. . b b b c b b 
-. . c b b b c b 
-. . . c c b b b 
-`, img`
-e e . . . . . . 
-e e e . . . . . 
-. e e e . d d . 
-. . e e e b b d 
-. . . e c b b b 
-. . b b b c b b 
-. . c b b b c b 
-. . . c c b b b 
-`, img`
-e e c . . . . . 
-e e e c . . . . 
-. e e e c d . . 
-. . e e e b d . 
-. . . e c b b c 
-. . . b b c b c 
-. . . c b c b c 
-. . . . c b b c 
-`, img`
-. e e c . . . . 
-. e e c . . . . 
-. e e c d . . . 
-. . e e b d . . 
-. . e c b c . . 
-. . . b c c . . 
-. . . c c c . . 
-. . . . c c . . 
-`, img`
-. . e e . . . . 
-. . e e . . . . 
-. . e e e . . . 
-. . e e b d . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b c c . . 
-`, img`
-. . . e e . . . 
-. . . e e . . . 
-. . . e e . . . 
-. . . e d . . . 
-. . . b d . . . 
-. . . b b . . . 
-. . b b b . . . 
-. . b b b . . . 
-`, img`
-. . . . e e . . 
-. . . . e e . . 
-. . . e e e . . 
-. . b d e e . . 
-. . c b d . . . 
-. . c b b . . . 
-. . c b b . . . 
-. . c c b . . . 
-`, img`
-. . . . c e e . 
-. . . . c e e . 
-. . . b c e e . 
-. . b d e e . . 
-. . c b c e . . 
-. . c c d . . . 
-. . c c c . . . 
-. . c c . . . . 
-`, img`
-. . . . . c e e 
-. . . . c e e e 
-. . b c e e e . 
-. b b e e e . . 
-c b b c e . . . 
-c b c b d . . . 
-c b c b c . . . 
-c b b c . . . . 
-`, img`
-. . . . . . e e 
-. . . . . e e e 
-. b b . e e e . 
-c b b e e e . . 
-b b b c e . . . 
-b b c b d d . . 
-b c b b b c . . 
-b b b c c . . . 
-`, img`
-. . . . . . e e 
-. . . . . e e e 
-. b b . e e e . 
-c b b e e e . . 
-b b b c e . . . 
-b b c b d d . . 
-b c b b b c . . 
-b b b c c . . . 
-`, img`
-. . . . . c e e 
-. . . . c e e e 
-. . b c e e e . 
-. b b e e e . . 
-c b b c e . . . 
-c b c b d . . . 
-c b c b c . . . 
-c b b c . . . . 
-`, img`
-. . . . c e e . 
-. . . . c e e . 
-. . . b c e e . 
-. . b d e e . . 
-. . c b c e . . 
-. . c c d . . . 
-. . c c c . . . 
-. . c c . . . . 
-`, img`
-. . . . e e . . 
-. . . . e e . . 
-. . . e e e . . 
-. . b d e e . . 
-. . c b d . . . 
-. . c b b . . . 
-. . c b b . . . 
-. . c c b . . . 
-`, img`
-. . . e e . . . 
-. . . e e . . . 
-. . . e e . . . 
-. . . e d . . . 
-. . . b d . . . 
-. . . b b . . . 
-. . b b b . . . 
-. . b b b . . . 
-`, img`
-. . e e . . . . 
-. . e e . . . . 
-. . e e e . . . 
-. . e e b d . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b c c . . 
-`, img`
-. e e c . . . . 
-. e e c . . . . 
-. e e c d . . . 
-. . e e b d . . 
-. . e c b c . . 
-. . . b c c . . 
-. . . c c c . . 
-. . . . c c . . 
-`, img`
-e e c . . . . . 
-e e e c . . . . 
-. e e e c d . . 
-. . e e e b d . 
-. . . e c b b c 
-. . . b b c b c 
-. . . c b c b c 
-. . . . c b b c 
-`];
             case "CUTE BUNBUN R":
             case "anim2":return [img`
 . . . . . . . . . . . . . . . 
@@ -775,6 +753,170 @@ d d d c b b b b b b b b . . .
 . 4 . . 
 . 4 4 . 
 `];
+            case "Shovel Spin":
+            case "anim1":return [img`
+e e . . . . . . 
+e e e . . . . . 
+. e e e . d d . 
+. . e e e b b d 
+. . . e c b b b 
+. . b b b c b b 
+. . c b b b c b 
+. . . c c b b b 
+`, img`
+e e . . . . . . 
+e e e . . . . . 
+. e e e . d d . 
+. . e e e b b d 
+. . . e c b b b 
+. . b b b c b b 
+. . c b b b c b 
+. . . c c b b b 
+`, img`
+e e c . . . . . 
+e e e c . . . . 
+. e e e c d . . 
+. . e e e b d . 
+. . . e c b b c 
+. . . b b c b c 
+. . . c b c b c 
+. . . . c b b c 
+`, img`
+. e e c . . . . 
+. e e c . . . . 
+. e e c d . . . 
+. . e e b d . . 
+. . e c b c . . 
+. . . b c c . . 
+. . . c c c . . 
+. . . . c c . . 
+`, img`
+. . e e . . . . 
+. . e e . . . . 
+. . e e e . . . 
+. . e e b d . . 
+. . . b b c . . 
+. . . b b c . . 
+. . . b b c . . 
+. . . b c c . . 
+`, img`
+. . . e e . . . 
+. . . e e . . . 
+. . . e e . . . 
+. . . e d . . . 
+. . . b d . . . 
+. . . b b . . . 
+. . b b b . . . 
+. . b b b . . . 
+`, img`
+. . . . e e . . 
+. . . . e e . . 
+. . . e e e . . 
+. . b d e e . . 
+. . c b d . . . 
+. . c b b . . . 
+. . c b b . . . 
+. . c c b . . . 
+`, img`
+. . . . c e e . 
+. . . . c e e . 
+. . . b c e e . 
+. . b d e e . . 
+. . c b c e . . 
+. . c c d . . . 
+. . c c c . . . 
+. . c c . . . . 
+`, img`
+. . . . . c e e 
+. . . . c e e e 
+. . b c e e e . 
+. b b e e e . . 
+c b b c e . . . 
+c b c b d . . . 
+c b c b c . . . 
+c b b c . . . . 
+`, img`
+. . . . . . e e 
+. . . . . e e e 
+. b b . e e e . 
+c b b e e e . . 
+b b b c e . . . 
+b b c b d d . . 
+b c b b b c . . 
+b b b c c . . . 
+`, img`
+. . . . . . e e 
+. . . . . e e e 
+. b b . e e e . 
+c b b e e e . . 
+b b b c e . . . 
+b b c b d d . . 
+b c b b b c . . 
+b b b c c . . . 
+`, img`
+. . . . . c e e 
+. . . . c e e e 
+. . b c e e e . 
+. b b e e e . . 
+c b b c e . . . 
+c b c b d . . . 
+c b c b c . . . 
+c b b c . . . . 
+`, img`
+. . . . c e e . 
+. . . . c e e . 
+. . . b c e e . 
+. . b d e e . . 
+. . c b c e . . 
+. . c c d . . . 
+. . c c c . . . 
+. . c c . . . . 
+`, img`
+. . . . e e . . 
+. . . . e e . . 
+. . . e e e . . 
+. . b d e e . . 
+. . c b d . . . 
+. . c b b . . . 
+. . c b b . . . 
+. . c c b . . . 
+`, img`
+. . . e e . . . 
+. . . e e . . . 
+. . . e e . . . 
+. . . e d . . . 
+. . . b d . . . 
+. . . b b . . . 
+. . b b b . . . 
+. . b b b . . . 
+`, img`
+. . e e . . . . 
+. . e e . . . . 
+. . e e e . . . 
+. . e e b d . . 
+. . . b b c . . 
+. . . b b c . . 
+. . . b b c . . 
+. . . b c c . . 
+`, img`
+. e e c . . . . 
+. e e c . . . . 
+. e e c d . . . 
+. . e e b d . . 
+. . e c b c . . 
+. . . b c c . . 
+. . . c c c . . 
+. . . . c c . . 
+`, img`
+e e c . . . . . 
+e e e c . . . . 
+. e e e c d . . 
+. . e e e b d . 
+. . . e c b b c 
+. . . b b c b c 
+. . . c b c b c 
+. . . . c b b c 
+`];
         }
         return null;
     })
@@ -789,6 +931,8 @@ d d d c b b b b b b b b . . .
             case "The Field":return hex`0078000408040305001c000f0a006400f4010a0000040000000000000000000000000000000002840000000400011b08000c00011810001400011914001800011818002000011920002400011628002c00011630003400011634003800011838004000011940004400011b48004c00011850005400011954005800011858006000011960006400011b64006800011868006c00011b6c007000011870007800011978007c00011b7c008000011d07001c00020a006400f401640000040000000000000000000000000000000003c60000000400012704000800012508000c0001240c001000011e10001400012014001500012215001600012416001800012218002000012020002400012524002800012528002c0001252c003000012730003400012934003500012a35003600012c36003800012a38004000012940004400012c44004800012a48004c0001294c005000012550005400012754005500012955005600012a56005800012958006000012760006800012768006c0001276c006d0001246d006e0001226e007000012470008000012509010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c800c0000000010001010400050001060800090001040c000d0001061000110001011400150001061800190001041c001d0001062000210001012400250001062800290001042c002d0001063000310001013400350001063800390001043c003d0001064000410001014400450001064800490001044c004d0001065000510001015400550001065800590001045c005d0001076000610001016400650001066800690001046c006d0001067000710001017400750001067800790001047c007d000107`;
             case "song2":
             case "The Shed":return hex`0078000408050307001c00020a006400f40164000004000000000000000000000000000000000372000000040001240c001000012418001c0001242000240001222c003000012238003c0001203c00400001224000440001244c005000012458005c0001256000640001276c007000012578007c00012480008400012284008800012488008c0001258c00900001249000940001229c00a000012008001c000e050046006603320000040a002d00000064001400010000020000028a000000040001180c001000011818001c0001182000240001162c003000011638003c0001143c004000011640004400011848004c0001164c005000011858005c00011960006400011b68006c0001186c007000011978007c00011880008400011684008800011888008c0001198c009000011890009400011694009800011198009c00010c9c00a000011409010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c800ae000000010001030800090001090c000d0001061400150001091800190001082000210001082800290001082c002d0001083000310001033800390001093c003d0001074000410001034800490001094c004d0001075000510001035800590001095c005d00010960006100010964006500010368006900010a6c006d00010a7000710001037800790001078000810001038800890001098c008d0001079000910001039800990001039c009d000106`;
+            case "song5":
+            case "The Burrow":return hex`0078000408020300001c00010a006400f401640000040000000000000000000000000005000004480000000800012208000c0001200c001000011e10001800011d18002000011e20002400012524002800012428003000012230003800012438003900012539003a0001273a004000012503001c0001dc00690000045e0100040000000000000000000005000001000003240000001800012518002000012a20002800012528003000012930003800012a38004000012c09010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c80060000000010001040400050001080800090001060c000d0001081000110001041400150001041800190001081c001d0001042000210001042400250001082800290001062c002d0001083000310001043400350001043800390001083c003d000106`;
         }
         return null;
     })

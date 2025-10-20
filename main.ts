@@ -62,8 +62,6 @@ function SetupLevel () {
         color.setPalette(
         color.originalPalette
         )
-        info.setScore(1)
-        BunnyAmount = 1
         HasKey = false
         scene.setBackgroundImage(assets.image`LVL one`)
         tiles.setCurrentTilemap(tilemap`level1`)
@@ -108,6 +106,42 @@ function SetupLevel () {
         scroller.setCameraScrollingMultipliers(0.1, 0.1)
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Shed`), music.PlaybackMode.LoopingInBackground)
+        music.setVolume(100)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
+            ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
+            tiles.placeOnTile(ShovelCollectable, ShovelToBe)
+            tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            ShovelCollectable,
+            assets.animation`Shovel Spin`,
+            50,
+            true
+            )
+        }
+        for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
+            Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
+            Bunny.ay = 400
+            tiles.placeOnTile(Bunny, BunnySpawn)
+            tiles.setTileAt(BunnySpawn, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            Bunny,
+            assets.animation`CUTE BUNBUN R`,
+            200,
+            true
+            )
+        }
+    } else if (Level == 3) {
+        HasKey = false
+        controller.moveSprite(Gelb, 75, 0)
+        scene.setBackgroundImage(assets.image`The Tunnel`)
+        tiles.setCurrentTilemap(tilemap`level3`)
+        tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
+        scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
+        scroller.setCameraScrollingMultipliers(0.1, 0.1)
+        music.setVolume(50)
+        music.play(music.createSong(assets.song`The Burrow`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
@@ -193,24 +227,7 @@ let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let Gelb: Sprite = null
 let Level = 0
-let AnimationArray1 = img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . 3 3 3 . . . . 
-    . . . . . . . . 3 . . . . . . . 
-    . . 3 3 3 3 3 3 . . 3 . . . . . 
-    . . . . 3 . . . . . 3 . . . . . 
-    . . . . 3 . . . . . 3 . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . 3 3 3 . . . . . . . 
-    . . . . . 3 . . . 3 . . . . . . 
-    . . . . 3 . . . . . 3 . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `
+let AnimationArray1 = assets.image`THE ROCK`
 let AnimationArray2 = assets.image`Shovel Overlay`
 Level = 1
 Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
