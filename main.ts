@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const Shovel = SpriteKind.create()
     export const Gibblets = SpriteKind.create()
     export const Key = SpriteKind.create()
+    export const SeriousDanger = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (Gelb.vy - 8 > 0) {
@@ -49,6 +50,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     } else {
     	
     }
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprite.vx = -35
+    sprite.vy = 0
+    otherSprite.vx = 35
+    otherSprite.vy = 0
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
@@ -168,6 +175,18 @@ function SetupLevel () {
             true
             )
         }
+        for (let BabySpawn of tiles.getTilesByType(assets.tile`myTile`)) {
+            Baby = sprites.create(assets.image`BABY BUN`, SpriteKind.SeriousDanger)
+            Baby.ay = 400
+            tiles.placeOnTile(Baby, BabySpawn)
+            tiles.setTileAt(BabySpawn, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            Bunny,
+            assets.animation`BABY BUN R`,
+            75,
+            true
+            )
+        }
     } else {
     	
     }
@@ -219,6 +238,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 info.onScore(0, function () {
 	
 })
+let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
 let HasKey = false
@@ -263,6 +283,12 @@ game.onUpdateInterval(randint(500, 2000), function () {
             )
         }
         sprites.setDataString(BunnyToJump, "Jump", "")
+    }
+    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.SeriousDanger)) {
+        if (Baby.vy == 0) {
+            Baby.vx = randint(-50, 50)
+            Baby.vy = -150
+        }
     }
 })
 game.onUpdate(function () {

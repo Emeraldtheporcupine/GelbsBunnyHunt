@@ -559,6 +559,17 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 `;
+            case "image14":
+            case "BABY BUN":return img`
+. b b . . . b . 
+b b d b . b d b 
+. d d b . b d d 
+. d b b d b d . 
+. b f 1 b 1 b . 
+. b f f b f b . 
+d c b b 3 b b . 
+d d c c b b . . 
+`;
         }
         return null;
     })
@@ -916,6 +927,46 @@ e e e c . . . .
 . . . b b c b c 
 . . . c b c b c 
 . . . . c b b c 
+`];
+            case "BABY BUN L":
+            case "anim6":return [img`
+. b . . . b b . 
+b d b . b d b b 
+d d b . b d d . 
+. d b d b b d . 
+. b 1 b 1 f b . 
+. b f b f f b . 
+. c b 3 b b b d 
+. . c c b b d d 
+`, img`
+. . . . . . . . 
+. . . . . . . . 
+. b . . . b b . 
+b d b . b d b b 
+. d b d b b d . 
+. b 1 b 1 f b . 
+. c f 3 f f b d 
+. . c c b b d d 
+`];
+            case "BABY BUN R":
+            case "anim5":return [img`
+. b b . . . b . 
+b b d b . b d b 
+. d d b . b d d 
+. d b b d b d . 
+. b f 1 b 1 b . 
+. b f f b f b . 
+d c b b 3 b b . 
+d d c c b b . . 
+`, img`
+. . . . . . . . 
+. . . . . . . . 
+. b b . . . b . 
+b b d b . b d b 
+. d b b d b d . 
+. b f 1 b 1 b . 
+d c f f 3 f b . 
+d d c c b b . . 
 `];
         }
         return null;
