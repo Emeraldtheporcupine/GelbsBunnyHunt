@@ -52,9 +52,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprite.vx = -35
+    sprite.vx = -5
     sprite.vy = 0
-    otherSprite.vx = 35
+    otherSprite.vx = 5
     otherSprite.vy = 0
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
@@ -284,12 +284,6 @@ game.onUpdateInterval(randint(500, 2000), function () {
         }
         sprites.setDataString(BunnyToJump, "Jump", "")
     }
-    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.SeriousDanger)) {
-        if (Baby.vy == 0) {
-            Baby.vx = randint(-50, 50)
-            Baby.vy = -150
-        }
-    }
 })
 game.onUpdate(function () {
     if (Gelb.vx > 0) {
@@ -308,6 +302,14 @@ game.onUpdate(function () {
             if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
                 sprites.setDataString(BunnyToRun, "Jump", "Left")
             }
+        }
+    }
+})
+game.onUpdateInterval(randint(100, 1000), function () {
+    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.SeriousDanger)) {
+        if (BEBE_BUN_KILL.vy == 0) {
+            BEBE_BUN_KILL.vx = randint(-50, 50)
+            BEBE_BUN_KILL.vy = -150
         }
     }
 })
