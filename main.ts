@@ -57,6 +57,12 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
     otherSprite.vx = 5
     otherSprite.vy = 0
 })
+sprites.onOverlap(SpriteKind.SeriousDanger, SpriteKind.SeriousDanger, function (sprite, otherSprite) {
+    sprite.vx = -35
+    sprite.vy = -150
+    otherSprite.vx = 35
+    otherSprite.vy = -150
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
         music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
