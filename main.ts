@@ -289,6 +289,9 @@ game.onUpdateInterval(randint(500, 2000), function () {
             )
         }
         sprites.setDataString(BunnyToJump, "Jump", "")
+        if (BunnyToJump.isHittingTile(CollisionDirection.Bottom) && BunnyToJump.vx != 0) {
+            BunnyToJump.vx = 0
+        }
     }
 })
 game.onUpdate(function () {
