@@ -2,7 +2,7 @@ namespace SpriteKind {
     export const Shovel = SpriteKind.create()
     export const Gibblets = SpriteKind.create()
     export const Key = SpriteKind.create()
-    export const SeriousDanger = SpriteKind.create()
+    export const BEBE = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (Gelb.vy - 8 > 0) {
@@ -56,12 +56,6 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
     sprite.vy = 0
     otherSprite.vx = 5
     otherSprite.vy = 0
-})
-sprites.onOverlap(SpriteKind.SeriousDanger, SpriteKind.SeriousDanger, function (sprite, otherSprite) {
-    sprite.vx = -35
-    sprite.vy = -150
-    otherSprite.vx = 35
-    otherSprite.vy = -150
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
@@ -182,7 +176,7 @@ function SetupLevel () {
             )
         }
         for (let BabySpawn of tiles.getTilesByType(assets.tile`myTile`)) {
-            Baby = sprites.create(assets.image`BABY BUN`, SpriteKind.SeriousDanger)
+            Baby = sprites.create(assets.image`BABY BUN`, SpriteKind.BEBE)
             Baby.ay = 400
             tiles.placeOnTile(Baby, BabySpawn)
             tiles.setTileAt(BabySpawn, assets.tile`transparency16`)
@@ -206,6 +200,7 @@ function SetupLevel () {
         music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -247,6 +242,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprit
             color.startFade(color.Black, color.originalPalette, 1000)
         })
     }
+})
+sprites.onOverlap(SpriteKind.BEBE, SpriteKind.BEBE, function (sprite, otherSprite) {
+    sprite.vx = -35
+    sprite.vy = -150
+    otherSprite.vx = 35
+    otherSprite.vy = -150
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, location) {
     if (BunnyAmount == 0) {
@@ -366,7 +367,7 @@ game.onUpdate(function () {
     }
 })
 game.onUpdateInterval(randint(100, 1000), function () {
-    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.SeriousDanger)) {
+    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.BEBE)) {
         if (BEBE_BUN_KILL.vy == 0) {
             BEBE_BUN_KILL.vx = randint(-50, 50)
             BEBE_BUN_KILL.vy = -150
