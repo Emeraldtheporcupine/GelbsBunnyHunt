@@ -187,14 +187,48 @@ function SetupLevel () {
             tiles.placeOnTile(Baby, BabySpawn)
             tiles.setTileAt(BabySpawn, assets.tile`transparency16`)
             animation.runImageAnimation(
-            Bunny,
+            Baby,
             assets.animation`BABY BUN R`,
             75,
             true
             )
         }
-    } else {
-    	
+    } else if (Level == 4) {
+        HasKey = false
+        controller.moveSprite(Gelb, 75, 0)
+        scene.setBackgroundImage(assets.image`Factory`)
+        tiles.setCurrentTilemap(tilemap`level4`)
+        tiles.placeOnTile(Gelb, tiles.getTileLocation(0, 14))
+        scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.BothDirections)
+        scroller.setCameraScrollingMultipliers(0.1, 0.1)
+        music.setVolume(50)
+        music.play(music.createSong(assets.song`The Factory`), music.PlaybackMode.LoopingInBackground)
+        music.setVolume(100)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
+            ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
+            tiles.placeOnTile(ShovelCollectable, ShovelToBe)
+            tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            ShovelCollectable,
+            assets.animation`Shovel Spin`,
+            50,
+            true
+            )
+        }
+        for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
+            Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
+            Bunny.ay = 400
+            tiles.placeOnTile(Bunny, BunnySpawn)
+            tiles.setTileAt(BunnySpawn, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            Bunny,
+            assets.animation`CUTE BUNBUN R`,
+            200,
+            true
+            )
+        }
     }
     info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
     BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
@@ -239,6 +273,21 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Gelb.vy == 0) {
         Gelb.vy = -175
         music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite, location) {
+    if (BunnyAmount == 0) {
+        BunnyAmount = 1
+        music.stopAllSounds()
+        controller.moveSprite(Gelb, 0, 0)
+        tiles.placeOnTile(Gelb, location)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
+        timer.after(4000, function () {
+            color.startFade(color.originalPalette, color.Black, 1000)
+            Level += 1
+            SetupLevel()
+            color.startFade(color.Black, color.originalPalette, 1000)
+        })
     }
 })
 info.onScore(0, function () {
