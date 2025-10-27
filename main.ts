@@ -34,7 +34,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
             if (Level == 1) {
                 LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
                 LVL1key.setPosition(otherSprite.x, otherSprite.y)
-                LVL1key.vy = -250
+                LVL1key.vy = -100
                 LVL1key.ay = 400
                 LVL1key.vx = 20
                 animation.runImageAnimation(
