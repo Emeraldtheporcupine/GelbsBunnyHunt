@@ -79,6 +79,11 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Factory"
     },
+    "image16": {
+        "data": "hwRAADAAAACZmRGRmZmZmZmZ/393ZmZ3Z2ZmZmZmd3eZmRl3mZmZmZmZ/393ZmZ39////2ZmdveZmXl3l5mZmZmZ/393Zmb3X1VVRP9md/eZEXF3l5mZmZmZ/393d3dfVVVVVURvdneZEREREZGZmZmZ/393d3dfVVVVVUVvd3eZ8f///x+ZmZmZ/393d/dVVVVVVVX0dvcZ//////+RmZmZ/393d/dVVVVVVVX0dvfx/xEREf8fERER/393ZvZVVVVVVVX0d3fxH3d3d/Ef////8X93ZvZV//9fVVX0dvfxH3d3EfEfHxHx8X93ZvZVH/9f9VX1d+/xH3cX//EfHx/x8X93ZvYRVVVVVV/1dnfxH3cX//Ef8fEfmfn/d/cVVVVVVV/1dnfxH3cX//EfGRGRmfn/d3df//9f9VVvd3fxH3cX//8fGf8fmfn/d3dfH/9fVVVvdncZcXcX//8fmRHxkfn/d3f2X1VVVf9md/eZd3cX////kRHxkfn/ZmZm9v///2ZmdveZd3d3Ef//Ef8fmfn/ZmZmZmZmZmZmd3cZERERERERmRERmfn/ZmZmZmZmZmZmdvfx//////8fGf//kfn/ZmZmZmZmZmZmd/fx//////8fGR8Rmfn/ZmZmZmZmZmZmdnfxHxH/EfEfGR8R////ZmZmZmZmZmZmd3fxHxf/cfEfmfH/8f//ZmZmZmZmZmZmdvfxHxf/cfEfmRkR////ZmZmZmZmZmZmdvfxH3cRd/EfGf//8f//ZmZmZmZmZmZmd3fxH3d3d/EfGR8R/393ZmZ3Z2ZmZmZmdvcZcXd3d/GfGR8R/393ZmZ3Z2ZmZmZmd+8ZERERERGRmfH/8X93ZmZ3Z2ZmZmZmdnfx//////8fmREREX93ZmZ3Z2ZmZmZmdnfx//////8fGf+R8XF3d3dmZmZmZmZmd3cZEREREfEfmREfHx93d3dmZmZmZmZmdnd5d3d3d/EfmREfER93d3dmZmZmZmZmd/d5d3d3d/EfGf///3F3d3dmZmZmZmZmdvd5d3d3d/EfmREREX93ZmZmZmZmZmZmd3d5d3d3d/EfmZmZ/393ZmZmZmZmZmZmdvd5d3d3d/EfGRER/393ZmZmZmZmZmZmd/d5d3d3dxeR8f//8X93ZmZmZmZmZmZmdncZERERERGRGfERmfn/d3dmZv//b2Zmd3fx//////8fGfERmfn/d3dmZm9vZmZmdvfx//////8f8f//kfn/d3dmZvZmZmZmdvfxHxEfEfEfGRERmfn/d3dmZmZmZmZmd3fxHxEfEfEfGf8f/393//9mZvb/b2Zmdvfx//////+fmRHx8X93//9mZvZmZmZmd+8Z///x//+RmRHx8X93//9mZmZmZmZmdnd5EREXERGXGf8f/393//9mZmb/ZmZmdnd5EXd3d3eXmRER/393ZmZ3Z/Zvb2Zmd3cZ/3F3d3eXGf//8X93ZmZ3Z/Zvb2Zmdnfx/3F3d3eXGR8R/393ZmZ3Z2ZvZmZmd/fxH3d3dxeRGR8R/393ZmZ3Z2ZmZmZmdvcZERFxd/EfmfH/8X93d3dmZmZvb2Zmd3eZ8f8fd/EfmRER/393d3dmZvb2b2ZmdvcZ////cfEfGR8R/393d3dmZvZmb2Zmd/fx/xH/cfEf8f//8X93d3dmZmZmZmZmdnfxHxf/cfEfGR8R/393ZmZmZmZvb2Zmd3fxHxf/cfEfmZGZ/393ZmZmZvb2b2ZmdvfxHxf/H/EfmZmZ/393ZmZmZvZmb2ZmdvfxH3fx//8fmZmZ/393ZmZmZmZmZmZmd3fxH3cX//+RmZmZmfn/d3dmZm9mZmZmdvcZEXd3ERGZmZmZmfn/d3dm9mZmZmZmd++ZEXd3d5mZmZmZmfn/d3dmZvb///9mdneZEXd3d5mZmZmZmfn/d3dmZvZmb/ZmdneZmXl3l5mZmZmZ////ZmZmZvZmb/Zmd3eZmXl3l5mZmZmZ////ZmZmZmb/9m9mdneZmZl3mZmZmZmZ////ZmZm9mZmZmZmd/eZmZmZmZmZmZmZ////ZmZmZm9mZmZmdvc=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Title"
+    },
     "anim2": {
         "namespace": "myAnimations",
         "id": "anim2",

@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const Gibblets = SpriteKind.create()
     export const Key = SpriteKind.create()
     export const BEBE = SpriteKind.create()
+    export const Screen = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (Gelb.vy - 8 > 0) {
