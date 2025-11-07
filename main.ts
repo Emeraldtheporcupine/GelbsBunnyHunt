@@ -321,7 +321,7 @@ Title = true
 TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
 TitleSprite.setPosition(80, 60)
 TitleSprite.changeScale(1, ScaleAnchor.Middle)
-versionNumber = textsprite.create("v. 1.4.0")
+versionNumber = textsprite.create("v. 1.4.1")
 versionNumber.setPosition(25, 114)
 music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
 game.onUpdateInterval(randint(500, 2000), function () {
