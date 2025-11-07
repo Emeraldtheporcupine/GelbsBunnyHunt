@@ -54,6 +54,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Title == true) {
+        Title = false
         music.stopAllSounds()
         sprites.destroy(TitleSprite)
         AnimationArray1 = assets.image`THE ROCK`
