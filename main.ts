@@ -6,7 +6,7 @@ namespace SpriteKind {
     export const Screen = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (Gelb.vy - 8 > 0) {
+    if (sprite.vy - 8 > 0) {
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
         info.changeScoreBy(-1)
@@ -29,7 +29,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
                 sprites.destroy(GibbletSprite, effects.none, 0)
             })
         }
-        Gelb.vy = -100
+        sprite.vy = -100
         if (BunnyAmount == 0) {
             music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
             if (Level == 1) {
@@ -50,6 +50,20 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         music.setVolume(100)
     } else {
     	
+    }
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Title == true) {
+        music.stopAllSounds()
+        sprites.destroy(TitleSprite)
+        AnimationArray1 = assets.image`THE ROCK`
+        AnimationArray2 = assets.image`Shovel Overlay`
+        Level = 1
+        Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+        controller.moveSprite(Gelb, 75, 0)
+        Gelb.ay = 400
+        scene.cameraFollowSprite(Gelb)
+        SetupLevel()
     }
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -272,9 +286,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherS
     music.setVolume(40)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Gelb.vy == 0) {
-        Gelb.vy = -175
-        music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    if (Title == false) {
+        if (Gelb.vy == 0) {
+            Gelb.vy = -175
+            music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        }
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite, location) {
@@ -299,71 +315,78 @@ let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
 let HasKey = false
+let Gelb: Sprite = null
+let AnimationArray2: Image = null
+let AnimationArray1: Image = null
 let LVL1key: Sprite = null
+let Level = 0
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
-let Gelb: Sprite = null
-let Level = 0
-let AnimationArray1 = assets.image`THE ROCK`
-let AnimationArray2 = assets.image`Shovel Overlay`
-Level = 1
-Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-controller.moveSprite(Gelb, 75, 0)
-Gelb.ay = 400
-scene.cameraFollowSprite(Gelb)
-SetupLevel()
+let TitleSprite: Sprite = null
+let Title = false
+Title = true
+TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+TitleSprite.setPosition(80, 60)
+TitleSprite.changeScale(1, ScaleAnchor.Middle)
+music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
 game.onUpdateInterval(randint(500, 2000), function () {
-    for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
-        if (sprites.readDataString(BunnyToJump, "Jump") == "Left") {
-            if (BunnyToJump.vy == 0) {
-                BunnyToJump.vy = -250
-                BunnyToJump.vx = 100
-                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    if (Title == false) {
+        for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
+            if (sprites.readDataString(BunnyToJump, "Jump") == "Left") {
+                if (BunnyToJump.vy == 0) {
+                    BunnyToJump.vy = -250
+                    BunnyToJump.vx = 100
+                    music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+                }
+                animation.runImageAnimation(
+                BunnyToJump,
+                assets.animation`CUTE BUNBUN R`,
+                200,
+                true
+                )
+            } else if (sprites.readDataString(BunnyToJump, "Jump") == "Right") {
+                if (BunnyToJump.vy == 0) {
+                    BunnyToJump.vy = -250
+                    BunnyToJump.vx = -100
+                    music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+                }
+                animation.runImageAnimation(
+                BunnyToJump,
+                assets.animation`CUTE BUNBUN L`,
+                200,
+                true
+                )
             }
-            animation.runImageAnimation(
-            BunnyToJump,
-            assets.animation`CUTE BUNBUN R`,
-            200,
-            true
-            )
-        } else if (sprites.readDataString(BunnyToJump, "Jump") == "Right") {
-            if (BunnyToJump.vy == 0) {
-                BunnyToJump.vy = -250
-                BunnyToJump.vx = -100
-                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-            }
-            animation.runImageAnimation(
-            BunnyToJump,
-            assets.animation`CUTE BUNBUN L`,
-            200,
-            true
-            )
+            sprites.setDataString(BunnyToJump, "Jump", "")
+            timer.after(500, function () {
+                if (BunnyToJump.isHittingTile(CollisionDirection.Bottom) && BunnyToJump.vx != 0) {
+                    BunnyToJump.vx = 0
+                }
+            })
         }
-        sprites.setDataString(BunnyToJump, "Jump", "")
-        timer.after(500, function () {
-            if (BunnyToJump.isHittingTile(CollisionDirection.Bottom) && BunnyToJump.vx != 0) {
-                BunnyToJump.vx = 0
-            }
-        })
     }
 })
 game.onUpdate(function () {
-    if (Gelb.vx > 0) {
-        Gelb.setImage(assets.image`Gelb R`)
-    } else if (Gelb.vx < 0) {
-        Gelb.setImage(assets.image`Gelb L`)
+    if (Title == false) {
+        for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
+            if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Right")
+                }
+            } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Left")
+                }
+            }
+        }
     }
 })
 game.onUpdate(function () {
-    for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
-        if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
-            if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                sprites.setDataString(BunnyToRun, "Jump", "Right")
-            }
-        } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
-            if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                sprites.setDataString(BunnyToRun, "Jump", "Left")
-            }
+    if (Title == false) {
+        if (Gelb.vx > 0) {
+            Gelb.setImage(assets.image`Gelb R`)
+        } else if (Gelb.vx < 0) {
+            Gelb.setImage(assets.image`Gelb L`)
         }
     }
 })
