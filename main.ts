@@ -52,11 +52,21 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     	
     }
 })
+function Fade (ms: number, NextLevel: number) {
+    timer.after(ms, function () {
+        color.startFade(color.originalPalette, color.Black, 1000)
+        Level += NextLevel
+        SetupLevel()
+        color.startFade(color.Black, color.originalPalette, 1000)
+    })
+}
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Title == true) {
+        Fade(0, 0)
         Title = false
         music.stopAllSounds()
         sprites.destroy(TitleSprite)
+        sprites.destroy(versionNumber)
         AnimationArray1 = assets.image`THE ROCK`
         AnimationArray2 = assets.image`Shovel Overlay`
         Level = 1
@@ -64,7 +74,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         controller.moveSprite(Gelb, 75, 0)
         Gelb.ay = 400
         scene.cameraFollowSprite(Gelb)
-        SetupLevel()
     }
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -82,9 +91,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSpri
 })
 function SetupLevel () {
     if (Level == 1) {
-        color.setPalette(
-        color.originalPalette
-        )
         HasKey = false
         scene.setBackgroundImage(assets.image`LVL one`)
         tiles.setCurrentTilemap(tilemap`level1`)
@@ -251,12 +257,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprit
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        timer.after(4000, function () {
-            color.startFade(color.originalPalette, color.Black, 1000)
-            Level += 1
-            SetupLevel()
-            color.startFade(color.Black, color.originalPalette, 1000)
-        })
+        Fade(4000, 1)
     }
 })
 sprites.onOverlap(SpriteKind.BEBE, SpriteKind.BEBE, function (sprite, otherSprite) {
@@ -272,12 +273,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, lo
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        timer.after(4000, function () {
-            color.startFade(color.originalPalette, color.Black, 1000)
-            Level += 1
-            SetupLevel()
-            color.startFade(color.Black, color.originalPalette, 1000)
-        })
+        Fade(4000, 1)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
@@ -301,12 +297,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        timer.after(4000, function () {
-            color.startFade(color.originalPalette, color.Black, 1000)
-            Level += 1
-            SetupLevel()
-            color.startFade(color.Black, color.originalPalette, 1000)
-        })
+        Fade(4000, 1)
     }
 })
 info.onScore(0, function () {
@@ -323,12 +314,15 @@ let LVL1key: Sprite = null
 let Level = 0
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
+let versionNumber: TextSprite = null
 let TitleSprite: Sprite = null
 let Title = false
 Title = true
 TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
 TitleSprite.setPosition(80, 60)
 TitleSprite.changeScale(1, ScaleAnchor.Middle)
+versionNumber = textsprite.create("v. 1.4.0")
+versionNumber.setPosition(25, 114)
 music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
 game.onUpdateInterval(randint(500, 2000), function () {
     if (Title == false) {
