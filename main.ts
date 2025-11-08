@@ -318,18 +318,24 @@ let versionNumber: TextSprite = null
 let TitleSprite: Sprite = null
 let Title = false
 Title = true
-TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
-TitleSprite.setPosition(80, 60)
-TitleSprite.changeScale(1, ScaleAnchor.Middle)
-animation.runImageAnimation(
-TitleSprite,
-assets.animation`Title Anim`,
-200,
-true
-)
-versionNumber = textsprite.create("v. 1.4.2")
-versionNumber.setPosition(25, 114)
-music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
+Fade(0, 0)
+let WARNING = sprites.create(assets.image`Rated R`, SpriteKind.Screen)
+WARNING.changeScale(1, ScaleAnchor.Middle)
+timer.after(4000, function () {
+    Fade(0, 0)
+    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+    TitleSprite.setPosition(80, 60)
+    TitleSprite.changeScale(1, ScaleAnchor.Middle)
+    animation.runImageAnimation(
+    TitleSprite,
+    assets.animation`Title Anim`,
+    200,
+    true
+    )
+    versionNumber = textsprite.create("v. 1.4.3")
+    versionNumber.setPosition(25, 114)
+    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
+})
 game.onUpdateInterval(randint(500, 2000), function () {
     if (Title == false) {
         for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
