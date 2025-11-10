@@ -4,6 +4,7 @@ namespace SpriteKind {
     export const Key = SpriteKind.create()
     export const BEBE = SpriteKind.create()
     export const Screen = SpriteKind.create()
+    export const Warp = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.vy - 8 > 0) {
@@ -54,28 +55,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 function Fade (ms: number, NextLevel: number) {
     timer.after(ms, function () {
-        color.startFade(color.originalPalette, color.Black, 1000)
+        color.startFade(color.originalPalette, color.Black)
         Level += NextLevel
-        SetupLevel()
-        color.startFade(color.Black, color.originalPalette, 1000)
+        timer.after(2000, function () {
+            color.startFade(color.Black, color.originalPalette)
+            SetupLevel()
+        })
     })
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Title == true) {
-        Fade(0, 0)
-        Title = false
-        music.stopAllSounds()
-        sprites.destroy(TitleSprite)
-        sprites.destroy(versionNumber)
-        AnimationArray1 = assets.image`THE ROCK`
-        AnimationArray2 = assets.image`Shovel Overlay`
-        Level = 1
-        Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-        controller.moveSprite(Gelb, 75, 0)
-        Gelb.ay = 400
-        scene.cameraFollowSprite(Gelb)
-    }
-})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.vx = -5
     sprite.vy = 0
@@ -246,10 +233,34 @@ function SetupLevel () {
             true
             )
         }
+        Portal = sprites.create(assets.image`THE ROCK`, SpriteKind.Warp)
+        tiles.placeOnTile(Portal, tiles.getTileLocation(29, 10))
+        tiles.setTileAt(tiles.getTileLocation(29, 10), assets.tile`transparency16`)
+        animation.runImageAnimation(
+        Portal,
+        assets.animation`sparkle`,
+        100,
+        true
+        )
     }
     info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
     BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Title == true == (Rated == false)) {
+        Fade(0, 1)
+        music.stopAllSounds()
+        timer.after(2000, function () {
+            Title = false
+            sprites.destroy(TitleSprite)
+            sprites.destroy(versionNumber)
+            Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+            controller.moveSprite(Gelb, 75, 0)
+            Gelb.ay = 400
+            scene.cameraFollowSprite(Gelb)
+        })
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
     if (HasKey == true) {
         HasKey = false
@@ -303,38 +314,45 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
 info.onScore(0, function () {
 	
 })
+let Portal: Sprite = null
 let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
-let HasKey = false
 let Gelb: Sprite = null
-let AnimationArray2: Image = null
-let AnimationArray1: Image = null
+let HasKey = false
 let LVL1key: Sprite = null
-let Level = 0
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let versionNumber: TextSprite = null
 let TitleSprite: Sprite = null
+let Rated = false
 let Title = false
+let Level = 0
+color.startFade(color.Black, color.originalPalette)
+Level = 0
 Title = true
-Fade(0, 0)
-let WARNING = sprites.create(assets.image`Rated R`, SpriteKind.Screen)
+Rated = true
+let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
 WARNING.changeScale(1, ScaleAnchor.Middle)
 timer.after(4000, function () {
-    Fade(0, 0)
-    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
-    TitleSprite.setPosition(80, 60)
-    TitleSprite.changeScale(1, ScaleAnchor.Middle)
-    animation.runImageAnimation(
-    TitleSprite,
-    assets.animation`Title Anim`,
-    200,
-    true
-    )
-    versionNumber = textsprite.create("v. 1.4.3")
-    versionNumber.setPosition(25, 114)
-    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
+    color.startFade(color.originalPalette, color.Black)
+    timer.after(2000, function () {
+        sprites.destroy(WARNING)
+        color.startFade(color.Black, color.originalPalette)
+        TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+        TitleSprite.setPosition(80, 60)
+        TitleSprite.changeScale(1, ScaleAnchor.Middle)
+        Rated = false
+        animation.runImageAnimation(
+        TitleSprite,
+        assets.animation`Title Anim`,
+        200,
+        true
+        )
+        versionNumber = textsprite.create("v. 1.4.3")
+        versionNumber.setPosition(25, 114)
+        music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
+    })
 })
 game.onUpdateInterval(randint(500, 2000), function () {
     if (Title == false) {
