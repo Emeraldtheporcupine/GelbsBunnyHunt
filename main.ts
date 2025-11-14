@@ -46,6 +46,24 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
                 true
                 )
             }
+            if (Level == 4) {
+                scene.cameraFollowSprite(Portal)
+                timer.after(4000, function () {
+                    animation.runImageAnimation(
+                    Portal,
+                    assets.animation`sparkleNextLevel`,
+                    100,
+                    true
+                    )
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 250, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 175, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 125, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 36, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    timer.after(1000, function () {
+                        scene.cameraFollowSprite(Gelb)
+                    })
+                })
+            }
         }
         sprites.destroy(otherSprite, effects.none, 0)
         music.setVolume(100)
@@ -129,12 +147,6 @@ function SetupLevel () {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
             tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
-            animation.runImageAnimation(
-            ShovelCollectable,
-            assets.animation`Shovel Spin`,
-            50,
-            true
-            )
         }
         for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
             Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
@@ -233,15 +245,9 @@ function SetupLevel () {
             true
             )
         }
-        Portal = sprites.create(assets.image`THE ROCK`, SpriteKind.Warp)
+        Portal = sprites.create(assets.image`blank`, SpriteKind.Warp)
         tiles.placeOnTile(Portal, tiles.getTileLocation(29, 10))
         tiles.setTileAt(tiles.getTileLocation(29, 10), assets.tile`transparency16`)
-        animation.runImageAnimation(
-        Portal,
-        assets.animation`sparkle`,
-        100,
-        true
-        )
     }
     info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
     BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
@@ -314,12 +320,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
 info.onScore(0, function () {
 	
 })
-let Portal: Sprite = null
 let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
-let Gelb: Sprite = null
 let HasKey = false
+let Gelb: Sprite = null
+let Portal: Sprite = null
 let LVL1key: Sprite = null
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
@@ -351,7 +357,7 @@ timer.after(4000, function () {
         )
         versionNumber = textsprite.create("v. 1.4.3")
         versionNumber.setPosition(25, 114)
-        music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.LoopingInBackground)
+        music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
 })
 game.onUpdateInterval(randint(500, 2000), function () {
