@@ -147,6 +147,12 @@ function SetupLevel () {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
             tiles.setTileAt(ShovelToBe, assets.tile`transparency16`)
+            animation.runImageAnimation(
+            ShovelCollectable,
+            assets.animation`Shovel Spin`,
+            50,
+            true
+            )
         }
         for (let BunnySpawn of tiles.getTilesByType(assets.tile`myTile11`)) {
             Bunny = sprites.create(assets.image`The cutest bunny ever`, SpriteKind.Enemy)
