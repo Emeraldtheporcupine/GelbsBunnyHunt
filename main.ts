@@ -5,6 +5,7 @@ namespace SpriteKind {
     export const BEBE = SpriteKind.create()
     export const Screen = SpriteKind.create()
     export const Warp = SpriteKind.create()
+    export const Beam = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.vy - 8 > 0) {
@@ -32,7 +33,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
         }
         sprite.vy = -100
         if (BunnyAmount == 0) {
-            music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
+            if (Level < 4) {
+                music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
+            }
+            music.setVolume(100)
             if (Level == 1) {
                 LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
                 LVL1key.setPosition(otherSprite.x, otherSprite.y)
@@ -47,19 +51,21 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
                 )
             }
             if (Level == 4) {
+                music.play(music.createSong(assets.song`Portal Open`), music.PlaybackMode.InBackground)
                 scene.cameraFollowSprite(Portal)
                 timer.after(4000, function () {
                     animation.runImageAnimation(
                     Portal,
-                    assets.animation`sparkleNextLevel`,
+                    assets.animation`sparkle`,
                     100,
                     true
                     )
-                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 250, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 255, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                     music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 175, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                     music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 125, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                     music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 36, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
                     timer.after(1000, function () {
+                        WarpTime = true
                         scene.cameraFollowSprite(Gelb)
                     })
                 })
@@ -83,9 +89,53 @@ function Fade (ms: number, NextLevel: number) {
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.vx = -5
-    sprite.vy = 0
+    sprite.vy = -100
     otherSprite.vx = 5
-    otherSprite.vy = 0
+    otherSprite.vy = 100
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSprite) {
+    if (WarpTime == true) {
+        WarpTime = false
+        tiles.placeOnTile(sprite, otherSprite.tilemapLocation())
+        scene.cameraFollowSprite(otherSprite)
+        controller.moveSprite(sprite, 0, 0)
+        animation.runImageAnimation(
+        otherSprite,
+        assets.animation`sparkleNextLevel`,
+        100,
+        true
+        )
+        timer.after(1000, function () {
+            sprite.ay = 0
+            sprite.vy = -5
+            Teleporter = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Beam)
+            animation.runImageAnimation(
+            Teleporter,
+            assets.animation`Laser`,
+            100,
+            true
+            )
+            tiles.placeOnTile(Teleporter, sprite.tilemapLocation())
+            Teleporter.y += -74
+        })
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
@@ -262,8 +312,12 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Title == true == (Rated == false)) {
         Fade(0, 1)
         music.stopAllSounds()
+        music.setVolume(255)
+        music.play(music.createSoundEffect(WaveShape.Sawtooth, 1014, 1018, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        music.setVolume(100)
+        Title = false
         timer.after(2000, function () {
-            Title = false
+            PlayingTime = true
             sprites.destroy(TitleSprite)
             sprites.destroy(versionNumber)
             Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
@@ -330,6 +384,7 @@ let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
 let HasKey = false
+let Teleporter: Sprite = null
 let Gelb: Sprite = null
 let Portal: Sprite = null
 let LVL1key: Sprite = null
@@ -337,37 +392,42 @@ let BunnyAmount = 0
 let Gibblets: Sprite[] = []
 let versionNumber: TextSprite = null
 let TitleSprite: Sprite = null
-let Rated = false
 let Title = false
+let Rated = false
 let Level = 0
+let PlayingTime = false
+let WarpTime = false
+WarpTime = false
+PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
 Level = 0
-Title = true
 Rated = true
+Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
 WARNING.changeScale(1, ScaleAnchor.Middle)
 timer.after(4000, function () {
     color.startFade(color.originalPalette, color.Black)
     timer.after(2000, function () {
+        Title = true
+        Rated = false
         sprites.destroy(WARNING)
         color.startFade(color.Black, color.originalPalette)
         TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
         TitleSprite.setPosition(80, 60)
         TitleSprite.changeScale(1, ScaleAnchor.Middle)
-        Rated = false
         animation.runImageAnimation(
         TitleSprite,
         assets.animation`Title Anim`,
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.4.6")
+        versionNumber = textsprite.create("v. 1.5.0")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
 })
 game.onUpdateInterval(randint(500, 2000), function () {
-    if (Title == false) {
+    if (PlayingTime == true) {
         for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
             if (sprites.readDataString(BunnyToJump, "Jump") == "Left") {
                 if (BunnyToJump.vy == 0) {
@@ -404,7 +464,7 @@ game.onUpdateInterval(randint(500, 2000), function () {
     }
 })
 game.onUpdate(function () {
-    if (Title == false) {
+    if (PlayingTime == true) {
         for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
             if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
                 if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
@@ -419,7 +479,7 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
-    if (Title == false) {
+    if (PlayingTime == true) {
         if (Gelb.vx > 0) {
             Gelb.setImage(assets.image`Gelb R`)
         } else if (Gelb.vx < 0) {
@@ -428,10 +488,12 @@ game.onUpdate(function () {
     }
 })
 game.onUpdateInterval(randint(100, 1000), function () {
-    for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.BEBE)) {
-        if (BEBE_BUN_KILL.vy == 0) {
-            BEBE_BUN_KILL.vx = randint(-50, 50)
-            BEBE_BUN_KILL.vy = -150
+    if (PlayingTime == true) {
+        for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.BEBE)) {
+            if (BEBE_BUN_KILL.vy == 0) {
+                BEBE_BUN_KILL.vx = randint(-50, 50)
+                BEBE_BUN_KILL.vy = -150
+            }
         }
     }
 })
