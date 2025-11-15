@@ -134,6 +134,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSpr
             )
             tiles.placeOnTile(Teleporter, sprite.tilemapLocation())
             Teleporter.y += -74
+            Fade(2000, 1)
         })
     }
 })
@@ -304,6 +305,23 @@ function SetupLevel () {
         Portal = sprites.create(assets.image`blank`, SpriteKind.Warp)
         tiles.placeOnTile(Portal, tiles.getTileLocation(29, 10))
         tiles.setTileAt(tiles.getTileLocation(29, 10), assets.tile`transparency16`)
+    } else if (Level == 5) {
+        music.stopAllSounds()
+        controller.moveSprite(Gelb, 75, 0)
+        Gelb.vy = 0
+        Gelb.ay = 400
+        scene.setBackgroundImage(assets.image`Final Arena`)
+        tiles.setCurrentTilemap(tilemap`level`)
+        tiles.placeOnTile(Gelb, tiles.getTileLocation(8, 6))
+        scroller.setCameraScrollingMultipliers(0, 0)
+        music.setVolume(50)
+        music.play(music.createSong(assets.song`Final Area`), music.PlaybackMode.LoopingInBackground)
+        music.setVolume(100)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+        sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
+    } else {
+    	
     }
     info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
     BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
@@ -400,7 +418,7 @@ let WarpTime = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 0
+Level = 3
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
