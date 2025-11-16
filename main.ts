@@ -8,6 +8,9 @@ namespace SpriteKind {
     export const Beam = SpriteKind.create()
     export const Boss = SpriteKind.create()
 }
+namespace StatusBarKind {
+    export const BossHealth = StatusBarKind.create()
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.vy - 8 > 0) {
         music.setVolume(255)
@@ -149,6 +152,112 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSpr
             Fade(2000, 1, 1)
         })
     }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
+    if (BOSSTIME == true) {
+        if (sprite.vy - 8 > 0) {
+            music.setVolume(255)
+            music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 1, 255, 0, 200, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+            BaddieHealth.value += -2
+            Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+            for (let index = 0; index <= 5; index++) {
+                Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+            }
+            for (let index = 0; index <= 5; index++) {
+                Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
+            }
+            for (let GibbletSprite of Gibblets) {
+                GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+                GibbletSprite.vy = randint(-150, -100)
+                GibbletSprite.ay = 400
+                GibbletSprite.vx = randint(-35, 35)
+                scene.cameraShake(2, 200)
+                timer.after(2500, function () {
+                    sprites.destroy(GibbletSprite, effects.none, 0)
+                })
+            }
+            sprite.vy = -175
+            music.setVolume(100)
+        }
+    } else {
+        sprite.vy = -175
+        sprite.vx = -200
+    }
+})
+statusbars.onZero(StatusBarKind.BossHealth, function (status) {
+    BOSSTIME = false
+    music.stopAllSounds()
+    controller.moveSprite(Gelb, 0, 0)
+    sprites.destroy(BaddieHealth)
+    bigBADbunbun.vx = 0
+    scene.cameraFollowSprite(bigBADbunbun)
+    timer.after(1000, function () {
+        animation.runImageAnimation(
+        bigBADbunbun,
+        assets.animation`BigBadBUNLaugh`,
+        100,
+        false
+        )
+        music.play(music.createSoundEffect(WaveShape.Noise, 134, 329, 255, 255, 1000, SoundExpressionEffect.Tremolo, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+        music.play(music.createSoundEffect(WaveShape.Noise, 327, 329, 255, 255, 3000, SoundExpressionEffect.Tremolo, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+        animation.runImageAnimation(
+        bigBADbunbun,
+        assets.animation`BigBadBUNLaughEnd`,
+        100,
+        false
+        )
+        music.play(music.createSoundEffect(WaveShape.Noise, 306, 1, 255, 255, 1000, SoundExpressionEffect.Tremolo, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+        timer.after(200, function () {
+            animation.runImageAnimation(
+            bigBADbunbun,
+            assets.animation`BigBadBUNidle`,
+            200,
+            false
+            )
+            timer.after(500, function () {
+                animation.runImageAnimation(
+                bigBADbunbun,
+                assets.animation`BigBadBUNidleL`,
+                200,
+                true
+                )
+                bigBADbunbun.ay = 0
+                timer.after(1000, function () {
+                    Teleporter = sprites.create(img`
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        `, SpriteKind.Beam)
+                    animation.runImageAnimation(
+                    Teleporter,
+                    assets.animation`Laser`,
+                    100,
+                    true
+                    )
+                    tiles.placeOnTile(Teleporter, bigBADbunbun.tilemapLocation())
+                    Teleporter.y += -110
+                    Teleporter.x += -10
+                    Teleporter.setScale(2, ScaleAnchor.BottomLeft)
+                    timer.after(500, function () {
+                        sprites.destroy(bigBADbunbun)
+                    })
+                })
+            })
+        })
+    })
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
@@ -358,13 +467,15 @@ function SetupLevel () {
                 . . . . . . . . . . . . . . . . 
                 `, SpriteKind.Boss)
             tiles.placeOnTile(bigBADbunbun, tiles.getTileLocation(8, 0))
-            bigBADbunbun.ay = 400
+            bigBADbunbun.ay = 300
             animation.runImageAnimation(
             bigBADbunbun,
             assets.animation`BigBadBUNidle`,
             200,
             true
             )
+            BaddieHealth = statusbars.create(20, 4, StatusBarKind.BossHealth)
+            BaddieHealth.attachToSprite(bigBADbunbun, 5, 0)
         })
     } else {
     	
@@ -444,11 +555,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
 info.onScore(0, function () {
 	
 })
-let bigBADbunbun: Sprite = null
 let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
 let HasKey = false
+let bigBADbunbun: Sprite = null
+let BaddieHealth: StatusBarSprite = null
 let Teleporter: Sprite = null
 let Gelb: Sprite = null
 let Portal: Sprite = null
@@ -530,17 +642,33 @@ game.onUpdateInterval(randint(500, 2000), function () {
         }
     }
 })
-game.onUpdate(function () {
-    if (PlayingTime == true) {
-        for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
-            if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
-                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                    sprites.setDataString(BunnyToRun, "Jump", "Right")
-                }
-            } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
-                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                    sprites.setDataString(BunnyToRun, "Jump", "Left")
-                }
+game.onUpdateInterval(1350, function () {
+    if (BOSSTIME == true) {
+        if (Gelb.x > bigBADbunbun.x) {
+            if (bigBADbunbun.vy == 0) {
+                bigBADbunbun.vy = -200
+                bigBADbunbun.vx = 100
+                music.setVolume(255)
+                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 1000, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+                animation.runImageAnimation(
+                bigBADbunbun,
+                assets.animation`BigBadBUNidle`,
+                200,
+                true
+                )
+            }
+        } else if (Gelb.x < bigBADbunbun.x) {
+            if (bigBADbunbun.vy == 0) {
+                bigBADbunbun.vy = -200
+                bigBADbunbun.vx = -100
+                music.setVolume(255)
+                music.play(music.createSoundEffect(WaveShape.Noise, 1, 4160, 255, 0, 1000, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+                animation.runImageAnimation(
+                bigBADbunbun,
+                assets.animation`BigBadBUNidleL`,
+                200,
+                true
+                )
             }
         }
     }
@@ -554,22 +682,18 @@ game.onUpdate(function () {
         }
     }
 })
-game.onUpdateInterval(800, function () {
-    if (BOSSTIME == true) {
-        if (Gelb.x > bigBADbunbun.x) {
-            animation.runImageAnimation(
-            bigBADbunbun,
-            assets.animation`BigBadBUNidle`,
-            200,
-            true
-            )
-        } else if (Gelb.x < bigBADbunbun.x) {
-            animation.runImageAnimation(
-            bigBADbunbun,
-            assets.animation`BigBadBUNidleL`,
-            200,
-            true
-            )
+game.onUpdate(function () {
+    if (PlayingTime == true) {
+        for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
+            if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Right")
+                }
+            } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Left")
+                }
+            }
         }
     }
 })
