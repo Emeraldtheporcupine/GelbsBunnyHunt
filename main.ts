@@ -251,8 +251,12 @@ statusbars.onZero(StatusBarKind.BossHealth, function (status) {
                     Teleporter.y += -110
                     Teleporter.x += -10
                     Teleporter.setScale(2, ScaleAnchor.BottomLeft)
-                    timer.after(500, function () {
+                    timer.after(1000, function () {
                         sprites.destroy(bigBADbunbun)
+                        timer.after(1000, function () {
+                            scene.cameraFollowSprite(Gelb)
+                            controller.moveSprite(Gelb, 75, 0)
+                        })
                     })
                 })
             })
@@ -579,7 +583,7 @@ BOSSTIME = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 4
+Level = 0
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
@@ -600,7 +604,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.5.2")
+        versionNumber = textsprite.create("v. 1.5.3")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
