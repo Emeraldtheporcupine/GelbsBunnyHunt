@@ -310,9 +310,13 @@ function SetupLevel () {
         controller.moveSprite(Gelb, 75, 0)
         Gelb.vy = 0
         Gelb.ay = 400
+        sprites.destroy(Portal)
+        sprites.destroy(Teleporter)
+        scene.cameraFollowSprite(Gelb)
         scene.setBackgroundImage(assets.image`Final Arena`)
         tiles.setCurrentTilemap(tilemap`level`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(8, 6))
+        scroller.setBackgroundScrollOffset(0, 0)
         scroller.setCameraScrollingMultipliers(0, 0)
         music.setVolume(50)
         music.play(music.createSong(assets.song`Final Area`), music.PlaybackMode.LoopingInBackground)
@@ -439,7 +443,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.5.0")
+        versionNumber = textsprite.create("v. 1.5.1")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
