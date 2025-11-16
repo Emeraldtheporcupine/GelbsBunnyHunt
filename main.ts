@@ -6,6 +6,7 @@ namespace SpriteKind {
     export const Screen = SpriteKind.create()
     export const Warp = SpriteKind.create()
     export const Beam = SpriteKind.create()
+    export const Boss = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.vy - 8 > 0) {
@@ -77,14 +78,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     	
     }
 })
-function Fade (ms: number, NextLevel: number) {
+function Fade (ms: number, NextLevel: number, FadeWhite: number) {
     timer.after(ms, function () {
-        color.startFade(color.originalPalette, color.Black)
+        if (FadeWhite == 1) {
+            color.startFade(color.originalPalette, color.White)
+        } else {
+            color.startFade(color.originalPalette, color.Black)
+        }
         Level += NextLevel
-        timer.after(2000, function () {
-            color.startFade(color.Black, color.originalPalette)
-            SetupLevel()
-        })
+        if (FadeWhite == 1) {
+            timer.after(3000, function () {
+                color.startFade(color.White, color.originalPalette)
+                SetupLevel()
+            })
+        } else {
+            timer.after(2000, function () {
+                color.startFade(color.Black, color.originalPalette)
+                SetupLevel()
+            })
+        }
     })
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -134,7 +146,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSpr
             )
             tiles.placeOnTile(Teleporter, sprite.tilemapLocation())
             Teleporter.y += -74
-            Fade(2000, 1)
+            Fade(2000, 1, 1)
         })
     }
 })
@@ -316,14 +328,44 @@ function SetupLevel () {
         scene.setBackgroundImage(assets.image`Final Arena`)
         tiles.setCurrentTilemap(tilemap`level`)
         tiles.placeOnTile(Gelb, tiles.getTileLocation(8, 6))
-        scroller.setBackgroundScrollOffset(0, 0)
+        scroller.setBackgroundScrollOffset(-40, 0)
         scroller.setCameraScrollingMultipliers(0, 0)
-        music.setVolume(50)
-        music.play(music.createSong(assets.song`Final Area`), music.PlaybackMode.LoopingInBackground)
-        music.setVolume(100)
         sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
         sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
+        scroller.setCameraScrollingMultipliers(0.1, 0)
+        timer.after(2000, function () {
+            BOSSTIME = true
+            music.setVolume(50)
+            music.play(music.createSong(assets.song`Final Area`), music.PlaybackMode.LoopingInBackground)
+            music.setVolume(100)
+            bigBADbunbun = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.Boss)
+            tiles.placeOnTile(bigBADbunbun, tiles.getTileLocation(8, 0))
+            bigBADbunbun.ay = 400
+            animation.runImageAnimation(
+            bigBADbunbun,
+            assets.animation`BigBadBUNidle`,
+            200,
+            true
+            )
+        })
     } else {
     	
     }
@@ -332,7 +374,7 @@ function SetupLevel () {
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Title == true == (Rated == false)) {
-        Fade(0, 1)
+        Fade(0, 1, 0)
         music.stopAllSounds()
         music.setVolume(255)
         music.play(music.createSoundEffect(WaveShape.Sawtooth, 1014, 1018, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
@@ -356,7 +398,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprit
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        Fade(4000, 1)
+        Fade(4000, 1, 0)
     }
 })
 sprites.onOverlap(SpriteKind.BEBE, SpriteKind.BEBE, function (sprite, otherSprite) {
@@ -372,7 +414,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, lo
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        Fade(4000, 1)
+        Fade(4000, 1, 0)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
@@ -396,12 +438,13 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
         controller.moveSprite(Gelb, 0, 0)
         tiles.placeOnTile(Gelb, location)
         music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        Fade(4000, 1)
+        Fade(4000, 1, 0)
     }
 })
 info.onScore(0, function () {
 	
 })
+let bigBADbunbun: Sprite = null
 let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
@@ -419,10 +462,12 @@ let Rated = false
 let Level = 0
 let PlayingTime = false
 let WarpTime = false
+let BOSSTIME = false
+BOSSTIME = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 0
+Level = 4
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
@@ -506,6 +551,25 @@ game.onUpdate(function () {
             Gelb.setImage(assets.image`Gelb R`)
         } else if (Gelb.vx < 0) {
             Gelb.setImage(assets.image`Gelb L`)
+        }
+    }
+})
+game.onUpdateInterval(800, function () {
+    if (BOSSTIME == true) {
+        if (Gelb.x > bigBADbunbun.x) {
+            animation.runImageAnimation(
+            bigBADbunbun,
+            assets.animation`BigBadBUNidle`,
+            200,
+            true
+            )
+        } else if (Gelb.x < bigBADbunbun.x) {
+            animation.runImageAnimation(
+            bigBADbunbun,
+            assets.animation`BigBadBUNidleL`,
+            200,
+            true
+            )
         }
     }
 })
