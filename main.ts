@@ -422,7 +422,7 @@ let WarpTime = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 3
+Level = 0
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
@@ -443,7 +443,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.5.1")
+        versionNumber = textsprite.create("v. 1.5.2")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
