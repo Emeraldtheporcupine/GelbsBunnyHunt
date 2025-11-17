@@ -525,6 +525,7 @@ function SetupLevel () {
             `, SpriteKind.screenCenter)
         tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 9))
         mySprite.x += -8
+        music.play(music.createSong(assets.song`Spaceship Hijinx`), music.PlaybackMode.LoopingInBackground)
     } else {
     	
     }
@@ -688,7 +689,7 @@ BOSSTIME = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 5
+Level = 0
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
@@ -709,7 +710,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.5.3")
+        versionNumber = textsprite.create("v. 1.6.0")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
