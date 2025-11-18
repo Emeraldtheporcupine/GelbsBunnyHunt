@@ -9,6 +9,7 @@ namespace SpriteKind {
     export const Boss = SpriteKind.create()
     export const warper = SpriteKind.create()
     export const screenCenter = SpriteKind.create()
+    export const FirstBeam = SpriteKind.create()
 }
 namespace StatusBarKind {
     export const BossHealth = StatusBarKind.create()
@@ -142,7 +143,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSpr
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
-                `, SpriteKind.Beam)
+                `, SpriteKind.FirstBeam)
             animation.runImageAnimation(
             Teleporter,
             assets.animation`Laser`,
@@ -268,6 +269,7 @@ statusbars.onZero(StatusBarKind.BossHealth, function (status) {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
     scene.cameraFollowSprite(mySprite)
     tiles.setTileAt(location, assets.tile`myTile6`)
+    Gelb.setStayInScreen(true)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
     if (otherSprite.vy == 0) {
@@ -710,7 +712,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.6.0")
+        versionNumber = textsprite.create("v. 1.6.1")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
