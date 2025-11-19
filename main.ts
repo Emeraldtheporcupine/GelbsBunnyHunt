@@ -781,7 +781,7 @@ timer.after(4000, function () {
         200,
         true
         )
-        versionNumber = textsprite.create("v. 1.6.1")
+        versionNumber = textsprite.create("v. 1.6.2")
         versionNumber.setPosition(25, 114)
         music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
     })
