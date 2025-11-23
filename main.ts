@@ -309,7 +309,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            50,
+            100,
             true
             )
         }
@@ -345,7 +345,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            50,
+            100,
             true
             )
         }
@@ -381,7 +381,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            50,
+            100,
             true
             )
         }
@@ -430,7 +430,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            50,
+            100,
             true
             )
         }
@@ -760,7 +760,7 @@ BOSSTIME = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 5
+Level = 0
 Rated = true
 Title = true
 let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
@@ -768,22 +768,32 @@ WARNING.changeScale(1, ScaleAnchor.Middle)
 timer.after(4000, function () {
     color.startFade(color.originalPalette, color.Black)
     timer.after(2000, function () {
-        Title = true
-        Rated = false
-        sprites.destroy(WARNING)
         color.startFade(color.Black, color.originalPalette)
-        TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
-        TitleSprite.setPosition(80, 60)
-        TitleSprite.changeScale(1, ScaleAnchor.Middle)
-        animation.runImageAnimation(
-        TitleSprite,
-        assets.animation`Title Anim`,
-        200,
-        true
-        )
-        versionNumber = textsprite.create("v. 1.6.2")
-        versionNumber.setPosition(25, 114)
-        music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
+        WARNING.setImage(assets.image`Modern Triangle`)
+        timer.after(2000, function () {
+            music.play(music.createSong(assets.song`ModernTriangle`), music.PlaybackMode.InBackground)
+            timer.after(4000, function () {
+                color.startFade(color.originalPalette, color.Black)
+                timer.after(2000, function () {
+                    Title = true
+                    Rated = false
+                    sprites.destroy(WARNING)
+                    color.startFade(color.Black, color.originalPalette)
+                    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+                    TitleSprite.setPosition(80, 60)
+                    TitleSprite.changeScale(1, ScaleAnchor.Middle)
+                    animation.runImageAnimation(
+                    TitleSprite,
+                    assets.animation`Title Anim`,
+                    200,
+                    true
+                    )
+                    versionNumber = textsprite.create("v. 1.6.2")
+                    versionNumber.setPosition(25, 114)
+                    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
+                })
+            })
+        })
     })
 })
 game.onUpdateInterval(randint(500, 2000), function () {

@@ -1064,6 +1064,57 @@ ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 5 5 
 5 5 
 `;
+            case "image22":
+            case "Modern Triangle":return img`
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffff5ffffffffffffffffffff5ffffffffffffffffffffff
+fffffffffffffffffff5f5ffffffffffffffffff5f5fffffffffffffffffffff
+ffffffffffffffffff5fff5ffffffffffffffff5fff5ffffffffffffffffffff
+fffffffffffffffff5fffff5ffffffffffffff5fffff5fffffffffffffffffff
+ffffffffffffffff5fffffff5ffffffffffff5fffffff5ffffffffffffffffff
+fffffffffffffff5fffffffff5ffffffffff5fffffffff5fffffffffffffffff
+ffffffffffffff5fffffffffff5ffffffff5fffffffffff5ffffffffffffffff
+fffffffffffff5fffffffffffff5ffffff5fffffffffffff5fffffffffffffff
+ffffffffffff5fffffffffffffff5ffff5fffffffffffffff5ffffffffffffff
+fffffffffff5fffffffffffffffff5ff5fffffffffffffffff5fffffffffffff
+ffffffffff5fffffffffffffffffff55fffffffffffffffffff5ffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffff5fffffffffffffffffffffffffffffffffffffffff
+ffffffffff55f55fffffff5ff5ff5fffffffffffffffffffffffffffffffffff
+ffffffffff5f5f5ff5fff55f5f5f555f555fffffffffffffffffffffffffffff
+ffffffffff5fff5f5f5f5f5f555f5fff5ff5ffffffffffffffffffffffffffff
+ffffffffff5fff5ff5fff55f55ff5fff5ff5ffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffff55555fffff5fffffffffffffff5fffffffffffffffffffffffffff
+ffffffffffff5fff5fffffffffffffffffff5ff5ffffffffffffffffffffffff
+ffffffffffff5fff555f5ff55ff555fff55f5f5f5fffffffffffffffffffffff
+ffffffffffff5fff5fff5f5f5ff5ff5f5f5f5f555fffffffffffffffffffffff
+ffffffffffff5fff5fff5ff555f5ff5ff55f5f55ffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffff5fffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffff5fffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffff5ffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffff5fffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+`;
         }
         return null;
     })
@@ -1257,170 +1308,6 @@ d d d c b b b b b b b b . . .
 . 4 5 . 
 . 4 . . 
 . 4 4 . 
-`];
-            case "Shovel Spin":
-            case "anim1":return [img`
-e e . . . . . . 
-e e e . . . . . 
-. e e e . d d . 
-. . e e e b b d 
-. . . e c b b b 
-. . b b b c b b 
-. . c b b b c b 
-. . . c c b b b 
-`, img`
-e e . . . . . . 
-e e e . . . . . 
-. e e e . d d . 
-. . e e e b b d 
-. . . e c b b b 
-. . b b b c b b 
-. . c b b b c b 
-. . . c c b b b 
-`, img`
-e e c . . . . . 
-e e e c . . . . 
-. e e e c d . . 
-. . e e e b d . 
-. . . e c b b c 
-. . . b b c b c 
-. . . c b c b c 
-. . . . c b b c 
-`, img`
-. e e c . . . . 
-. e e c . . . . 
-. e e c d . . . 
-. . e e b d . . 
-. . e c b c . . 
-. . . b c c . . 
-. . . c c c . . 
-. . . . c c . . 
-`, img`
-. . e e . . . . 
-. . e e . . . . 
-. . e e e . . . 
-. . e e b d . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b c c . . 
-`, img`
-. . . e e . . . 
-. . . e e . . . 
-. . . e e . . . 
-. . . e d . . . 
-. . . b d . . . 
-. . . b b . . . 
-. . b b b . . . 
-. . b b b . . . 
-`, img`
-. . . . e e . . 
-. . . . e e . . 
-. . . e e e . . 
-. . b d e e . . 
-. . c b d . . . 
-. . c b b . . . 
-. . c b b . . . 
-. . c c b . . . 
-`, img`
-. . . . c e e . 
-. . . . c e e . 
-. . . b c e e . 
-. . b d e e . . 
-. . c b c e . . 
-. . c c d . . . 
-. . c c c . . . 
-. . c c . . . . 
-`, img`
-. . . . . c e e 
-. . . . c e e e 
-. . b c e e e . 
-. b b e e e . . 
-c b b c e . . . 
-c b c b d . . . 
-c b c b c . . . 
-c b b c . . . . 
-`, img`
-. . . . . . e e 
-. . . . . e e e 
-. b b . e e e . 
-c b b e e e . . 
-b b b c e . . . 
-b b c b d d . . 
-b c b b b c . . 
-b b b c c . . . 
-`, img`
-. . . . . . e e 
-. . . . . e e e 
-. b b . e e e . 
-c b b e e e . . 
-b b b c e . . . 
-b b c b d d . . 
-b c b b b c . . 
-b b b c c . . . 
-`, img`
-. . . . . c e e 
-. . . . c e e e 
-. . b c e e e . 
-. b b e e e . . 
-c b b c e . . . 
-c b c b d . . . 
-c b c b c . . . 
-c b b c . . . . 
-`, img`
-. . . . c e e . 
-. . . . c e e . 
-. . . b c e e . 
-. . b d e e . . 
-. . c b c e . . 
-. . c c d . . . 
-. . c c c . . . 
-. . c c . . . . 
-`, img`
-. . . . e e . . 
-. . . . e e . . 
-. . . e e e . . 
-. . b d e e . . 
-. . c b d . . . 
-. . c b b . . . 
-. . c b b . . . 
-. . c c b . . . 
-`, img`
-. . . e e . . . 
-. . . e e . . . 
-. . . e e . . . 
-. . . e d . . . 
-. . . b d . . . 
-. . . b b . . . 
-. . b b b . . . 
-. . b b b . . . 
-`, img`
-. . e e . . . . 
-. . e e . . . . 
-. . e e e . . . 
-. . e e b d . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b b c . . 
-. . . b c c . . 
-`, img`
-. e e c . . . . 
-. e e c . . . . 
-. e e c d . . . 
-. . e e b d . . 
-. . e c b c . . 
-. . . b c c . . 
-. . . c c c . . 
-. . . . c c . . 
-`, img`
-e e c . . . . . 
-e e e c . . . . 
-. e e e c d . . 
-. . e e e b d . 
-. . . e c b b c 
-. . . b b c b c 
-. . . c b c b c 
-. . . . c b b c 
 `];
             case "BABY BUN L":
             case "anim6":return [img`
@@ -4147,6 +4034,98 @@ b b b . b b b . b b b . b b b .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `];
+            case "Shovel Spin":
+            case "anim1":return [img`
+e e . . . . . . 
+e e e . . . . . 
+. e e e . d d . 
+. . e e e b b d 
+. . . e c b b b 
+. . b b b c b b 
+. . c b b b c b 
+. . . c c b b b 
+`, img`
+e e . . . . . . 
+e e e . . . . . 
+. e e e . d d . 
+. . e e e b b d 
+. . . e c b b b 
+. . b b b c b b 
+. . c b b b c b 
+. . . c c b b b 
+`, img`
+. e e c . . . . 
+. e e c . . . . 
+. e e c d . . . 
+. . e e b d . . 
+. . e c b b . . 
+. . . b b c . . 
+. . . c b c . . 
+. . . . c c . . 
+`, img`
+. . . e e . . . 
+. . . e e . . . 
+. . . e e . . . 
+. . . e d . . . 
+. . . b d . . . 
+. . . b c . . . 
+. . b c c . . . 
+. . c c c . . . 
+`, img`
+. . . . c e e . 
+. . . . c e e . 
+. . . b c e e . 
+. . b d e e . . 
+. . c b c e . . 
+. . c c d . . . 
+. . c c c . . . 
+. . c c . . . . 
+`, img`
+. . . . . . e e 
+. . . . . e e e 
+. b b . e e e . 
+c b b e e e . . 
+b b b c e . . . 
+b b c b d d . . 
+b c b b b c . . 
+b b b c c . . . 
+`, img`
+. . . . . . e e 
+. . . . . e e e 
+. b b . e e e . 
+c b b e e e . . 
+b b b c e . . . 
+b b c b d d . . 
+b c b b b c . . 
+b b b c c . . . 
+`, img`
+. . . . c e e . 
+. . . . c e e . 
+. . . b c e e . 
+. . b d e e . . 
+. . c b c e . . 
+. . c c d . . . 
+. . c c c . . . 
+. . c c . . . . 
+`, img`
+. . . e e . . . 
+. . . e e . . . 
+. . . e e . . . 
+. . . e d . . . 
+. . . b d . . . 
+. . . b b . . . 
+. . c c b . . . 
+. . c c c . . . 
+`, img`
+. e e c . . . . 
+. e e c . . . . 
+. e e c d . . . 
+. . e e b d . . 
+. . e c b b . . 
+. . . b b b . . 
+. . . c b c . . 
+. . . . c c . . 
+`];
         }
         return null;
     })
@@ -4173,6 +4152,8 @@ b b b . b b b . b b b . b b b .
             case "Final Area":return hex`00780004080a0304001c00100500640000041e000004000000000000000000000000000a000004c00300000200011902000400011b04000600011e06000800012408000a0001190a000c00011b0c000e00011e0e001000012410001200011912001400011b14001600011e16001800012418001a0001191a001c00011b1c001e00011e1e002000012520002200011b22002400011d24002600012226002800012728002a00011b2a002c00011d2c002e0001222e003000012730003200011b32003400011d34003600012236003800012738003a00011b3a003c00011d3c003e0001223e004000012540004200011942004400011b44004600011e46004800012448004a0001194a004c00011b4c004e00011e4e005000012450005200011952005400011b54005600011e56005800012458005a0001195a005c00011b5c005e00011e5e006000012560006200011b62006400011d64006600012266006800012768006a00011b6a006c00011d6c006e0001226e007000012770007200011b72007400011d74007600012276007800012778007a00011b7a007c00011d7c007e0001227e008000012580008200011982008400011b84008600011e86008800012488008a0001198a008c00011b8c008e00011e8e009000012490009200011992009400011b94009600011e96009800012498009a0001199a009c00011b9c009e00011e9e00a0000125a000a200011ba200a400011da400a6000122a600a8000127a800aa00011baa00ac00011dac00ae000122ae00b0000127b000b200011bb200b400011db400b6000122b600b8000127b800ba00011bba00bc00011dbc00be000122be00c0000125c000c2000119c200c400011bc400c600011ec600c8000124c800ca000119ca00cc00011bcc00ce00011ece00d0000124d000d2000119d200d400011bd400d600011ed600d8000124d800da000119da00dc00011bdc00de00011ede00e0000125e000e200011be200e400011de400e6000122e600e8000127e800ea00011bea00ec00011dec00ee000122ee00f0000127f000f200011bf200f400011df400f6000122f600f8000127f800fa00011bfa00fc00011dfc00fe000122fe000001012500010201011902010401011b04010601011e06010801012408010a0101190a010c01011b0c010e01011e0e011001012410011201011912011401011b14011601011e16011801012418011a0101191a011c01011b1c011e01011e1e012001012520012201011b22012401011d24012601012226012801012728012a01011b2a012c01011d2c012e0101222e013001012730013201011b32013401011d34013601012236013801012738013a01011b3a013c01011d3c013e0101223e014001012508001c000e050046006603320000040a002d0000006400140001000002000002fe0040006000020c1960006400012264006800011e68006c0001206c00800001228000a000020d1ba000a400012aa400a800012aa800ac000129ac00c000012a00010201011902010401011b04010601011e06010801012408010a0101190a010c01011b0c010e01011e0e011001012410011201012912011401012714011601011e16011801012218011a0101291a011c0101271c011e01011d1e012001011920012201011b22012401011d24012601012226012801012728012a01011b2a012c01011d2c012e0101222e013001012730013201012c32013401012a34013601012536013801012738013a0101203a013c0101203c013e0101203e014001011909010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c8004a010000010001080800090001081400150001081800190001081c001d0001082000210001082800290001083400350001083800390001083c003d00010a40004100010848004900010a54005500010858005900010a5c005d0001086000610001086800690001087400750001097800790001097c007d00010980008100010a8400850001088800890001078c008d0001089400950001089800990001089c009d000108a000a1000108a800a9000108b400b5000108b800b9000108bc00bd000108c000c1000109c800c9000109d400d5000109d800d9000109dc00dd00010ae000e1000108e800e9000108f400f5000108f800f9000108fa00fb000108fc00fd0001080001010101080801090101081401150101081801190101091c011d0101082001210101082801290101093401350101083801390101093a013b0101093c013d0101093e013f010109`;
             case "song10":
             case "Spaceship Hijinx":return hex`00c8000408080305001c000f0a006400f4010a0000040000000000000000000000000000000002080100000400011d04000800012408000c0001290c001000012410001400012914002000011d20002400011d24002800012428002c0001292c003000012430004000012940004400011d44004800012448004c0001294c005000012450005400012954006000011d60006400011d64006800012468006c0001296c007000012470008000012980008400011e84008800012588008c00012a8c009000012590009400012a9400a000011ea000a400011ea400a8000125a800ac00012aac00b0000125b000c000012ac000c400011ec400c8000125c800cc00012acc00d0000125d000d400012ad400e000011ee000e400011ee400e8000125e800ec00012aec00f0000125f0000001012a08001c000e050046006603320000040a002d000000640014000100000200000230000000200001112000400001114000600001116000800001118000a0000112a000c0000112c000e0000112e0000001011209010e02026400000403780000040a000301000000640001c80000040100000000640001640000040100000000fa0004af00000401c80000040a00019600000414000501006400140005010000002c0104dc00000401fa0000040a0001c8000004140005d0076400140005d0070000c800029001f40105c201f4010a0005900114001400039001000005c201f4010500058403050032000584030000fa00049001000005c201f4010500058403c80032000584030500640005840300009001049001000005c201f4010500058403c80064000584030500c8000584030000f40105ac0d000404a00f00000a0004ac0d2003010004a00f0000280004ac0d9001010004a00f0000280002d00700040408070f0064000408070000c80003c800c8000e7d00c80019000e64000f0032000e78000000fa00032c01c8000ee100c80019000ec8000f0032000edc000000fa0003f401c8000ea901c80019000e90010f0032000ea4010000fa0001c8000004014b000000c800012c01000401c8000000c8000190010004012c010000c80002c800000404c8000f0064000496000000c80002c2010004045e010f006400042c010000640002c409000404c4096400960004f6090000f40102b80b000404b80b64002c0104f40b0000f401022003000004200300040a000420030000ea01029001000004900100040a000490010000900102d007000410d0076400960010d0070000c800a00100000100021207040005000107080009000204070c000d00010710001100021207140015000107180019000204071c001d00010720002100021207240025000107280029000204072c002d00010730003100021207340035000107380039000204073c003d00010740004100021207440045000107480049000204074c004d00010750005100021207540055000107580059000204075c005d00010760006100021207640065000107680069000204076c006d00010770007100021207740075000107780079000204077c007d00010780008100021207840085000107880089000204078c008d00010790009100021207940095000107980099000204079c009d000107a000a100021207a400a5000107a800a900020407ac00ad000107b000b100021207b400b5000107b800b900020407bc00bd000107c000c100021207c400c5000107c800c900020407cc00cd000107d000d100021207d400d5000107d800d900020407dc00dd000107e000e100021207e400e5000107e800e900020407ec00ed000107f000f100021207f400f5000107f800f900020407fc00fd000107`;
+            case "song11":
+            case "ModernTriangle":return hex`0078000408020200001c00010a006400f4016400000400000000000000000000000000050000042a0000000400012504000800012008000c0001190c001000012010001800011918002000012020003800012506001c00010a006400f4016400000400000000000000000000000000000000022a0000000400012504000800012008000c0001190c0010000120100018000119180020000120200038000125`;
         }
         return null;
     })
