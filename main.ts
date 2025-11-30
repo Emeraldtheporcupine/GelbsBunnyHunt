@@ -172,7 +172,7 @@ function TitleAppear () {
     200,
     true
     )
-    versionNumber = textsprite.create("v. 1.6.3")
+    versionNumber = textsprite.create("v. 1.7.0")
     versionNumber.setPosition(25, 114)
     music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
 }
