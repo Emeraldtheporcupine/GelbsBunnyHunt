@@ -10,7 +10,7 @@ namespace SpriteKind {
     export const warper = SpriteKind.create()
     export const screenCenter = SpriteKind.create()
     export const FirstBeam = SpriteKind.create()
-    export const oneHitter = SpriteKind.create()
+    export const Spike = SpriteKind.create()
 }
 namespace StatusBarKind {
     export const BossHealth = StatusBarKind.create()
@@ -85,6 +85,58 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     	
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Spike, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    music.setVolume(255)
+    music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+    sprite.vx = Direction * -50
+    sprite.vy = -150
+    sprites.destroy(otherSprite, effects.none, 0)
+    Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+    for (let index = 0; index <= 9; index++) {
+        Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+    }
+    for (let index = 0; index <= 5; index++) {
+        Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
+    }
+    for (let GibbletSprite of Gibblets) {
+        GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+        GibbletSprite.vy = randint(-150, -100)
+        GibbletSprite.ay = 400
+        GibbletSprite.vx = randint(-35, 35)
+        scene.cameraShake(2, 200)
+        timer.after(2500, function () {
+            sprites.destroy(GibbletSprite, effects.none, 0)
+        })
+    }
+    if (info.life() < 1) {
+        music.stopAllSounds()
+        music.setVolume(255)
+        music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+        for (let index = 0; index <= 30; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+        }
+        for (let index = 0; index <= 10; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
+        }
+        for (let GibbletSprite of Gibblets) {
+            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+            GibbletSprite.vy = randint(-150, -100)
+            GibbletSprite.ay = 400
+            GibbletSprite.vx = randint(-35, 35)
+            scene.cameraShake(2, 200)
+            timer.after(2500, function () {
+                sprites.destroy(GibbletSprite, effects.none, 0)
+            })
+        }
+        sprites.destroy(sprite, effects.none, 0)
+        music.setVolume(100)
+        timer.after(4000, function () {
+            game.gameOver(false)
+        })
+    }
+})
 function Fade (ms: number, NextLevel: number, FadeWhite: number) {
     timer.after(ms, function () {
         if (FadeWhite == 1) {
@@ -105,6 +157,24 @@ function Fade (ms: number, NextLevel: number, FadeWhite: number) {
             })
         }
     })
+}
+function TitleAppear () {
+    Title = true
+    Rated = false
+    sprites.destroy(Beginnings)
+    color.startFade(color.Black, color.originalPalette)
+    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+    TitleSprite.setPosition(80, 60)
+    TitleSprite.changeScale(1, ScaleAnchor.Middle)
+    animation.runImageAnimation(
+    TitleSprite,
+    assets.animation`Title Anim`,
+    200,
+    true
+    )
+    versionNumber = textsprite.create("v. 1.6.3")
+    versionNumber.setPosition(25, 114)
+    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.vx = -5
@@ -255,6 +325,7 @@ statusbars.onZero(StatusBarKind.BossHealth, function (status) {
                     Teleporter.y += -110
                     Teleporter.x += -10
                     Teleporter.setScale(2, ScaleAnchor.BottomLeft)
+                    music.play(music.createSoundEffect(WaveShape.Noise, 1, 3190, 255, 171, 1000, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
                     timer.after(1000, function () {
                         sprites.destroy(bigBADbunbun)
                         timer.after(1000, function () {
@@ -534,7 +605,7 @@ function SetupLevel () {
         mySprite.x += -8
         music.play(music.createSong(assets.song`Spaceship Hijinx`), music.PlaybackMode.LoopingInBackground)
         for (let Spikes of tiles.getTilesByType(assets.tile`myTile22`)) {
-            SpikerKill = sprites.create(assets.image`blank`, SpriteKind.oneHitter)
+            SpikerKill = sprites.create(assets.image`blank`, SpriteKind.Spike)
             tiles.placeOnTile(SpikerKill, Spikes)
             tiles.setTileAt(Spikes, assets.tile`myTile6`)
             animation.runImageAnimation(
@@ -601,6 +672,65 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherS
     sprites.destroy(otherSprite, effects.none, 0)
     music.setVolume(40)
 })
+function FadeThings () {
+    timer.after(4000, function () {
+        color.startFade(color.originalPalette, color.Black)
+        timer.after(2000, function () {
+            color.startFade(color.Black, color.originalPalette)
+            Beginnings.setImage(assets.image`Modern Triangle`)
+            timer.after(2000, function () {
+                music.play(music.createSong(assets.song`ModernTriangle`), music.PlaybackMode.InBackground)
+                timer.after(4000, function () {
+                    color.startFade(color.originalPalette, color.Black)
+                    timer.after(2000, function () {
+                        music.play(music.createSong(assets.song`Intro`), music.PlaybackMode.InBackground)
+                        color.startFade(color.Black, color.originalPalette)
+                        Beginnings.setImage(assets.image`Beginning`)
+                        timer.after(4000, function () {
+                            color.startFade(color.originalPalette, color.Black)
+                            timer.after(2000, function () {
+                                color.startFade(color.Black, color.originalPalette)
+                                Beginnings.setImage(assets.image`Beginning2`)
+                                timer.after(4000, function () {
+                                    Beginnings.setImage(assets.image`Beginning3`)
+                                    timer.after(4000, function () {
+                                        color.startFade(color.originalPalette, color.Black)
+                                        timer.after(2000, function () {
+                                            color.startFade(color.Black, color.originalPalette)
+                                            Beginnings.setImage(assets.image`Beginning4`)
+                                            timer.after(4000, function () {
+                                                Beginnings.setImage(assets.image`Beginning5`)
+                                                timer.after(4000, function () {
+                                                    Beginnings.setImage(assets.image`Beginning6`)
+                                                    timer.after(2000, function () {
+                                                        Beginnings.setImage(assets.image`Beginning7`)
+                                                        timer.after(4000, function () {
+                                                            color.startFade(color.originalPalette, color.Black)
+                                                            timer.after(2000, function () {
+                                                                color.startFade(color.Black, color.originalPalette)
+                                                                Beginnings.setImage(assets.image`Beginning8`)
+                                                                timer.after(7000, function () {
+                                                                    color.startFade(color.originalPalette, color.Black)
+                                                                    timer.after(2000, function () {
+                                                                        TitleAppear()
+                                                                    })
+                                                                })
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+}
 function Towards_Player () {
     if (Gelb.x > bigBADbunbun.x) {
         if (bigBADbunbun.vy == 0) {
@@ -677,58 +807,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
         Fade(4000, 1, 0)
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.oneHitter, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
-    music.setVolume(255)
-    music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
-    sprite.vx = Direction * -50
-    sprite.vy = -150
-    sprites.destroy(otherSprite, effects.none, 0)
-    Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-    for (let index = 0; index <= 9; index++) {
-        Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-    }
-    for (let index = 0; index <= 5; index++) {
-        Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
-    }
-    for (let GibbletSprite of Gibblets) {
-        GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-        GibbletSprite.vy = randint(-150, -100)
-        GibbletSprite.ay = 400
-        GibbletSprite.vx = randint(-35, 35)
-        scene.cameraShake(2, 200)
-        timer.after(2500, function () {
-            sprites.destroy(GibbletSprite, effects.none, 0)
-        })
-    }
-    if (info.life() < 1) {
-        music.stopAllSounds()
-        music.setVolume(255)
-        music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
-        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-        for (let index = 0; index <= 30; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-        }
-        for (let index = 0; index <= 10; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
-        }
-        for (let GibbletSprite of Gibblets) {
-            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-            GibbletSprite.vy = randint(-150, -100)
-            GibbletSprite.ay = 400
-            GibbletSprite.vx = randint(-35, 35)
-            scene.cameraShake(2, 200)
-            timer.after(2500, function () {
-                sprites.destroy(GibbletSprite, effects.none, 0)
-            })
-        }
-        sprites.destroy(sprite, effects.none, 0)
-        music.setVolume(100)
-        timer.after(4000, function () {
-            game.gameOver(false)
-        })
-    }
-})
 info.onScore(0, function () {
 	
 })
@@ -740,16 +818,17 @@ let ShovelCollectable: Sprite = null
 let HasKey = false
 let mySprite: Sprite = null
 let bigBADbunbun: Sprite = null
-let Direction = 0
 let BaddieHealth: StatusBarSprite = null
 let Teleporter: Sprite = null
+let versionNumber: TextSprite = null
+let TitleSprite: Sprite = null
+let Direction = 0
 let Gelb: Sprite = null
 let Portal: Sprite = null
 let LVL1key: Sprite = null
 let BunnyAmount = 0
 let Gibblets: Sprite[] = []
-let versionNumber: TextSprite = null
-let TitleSprite: Sprite = null
+let Beginnings: Sprite = null
 let Title = false
 let Rated = false
 let Level = 0
@@ -763,39 +842,9 @@ color.startFade(color.Black, color.originalPalette)
 Level = 0
 Rated = true
 Title = true
-let WARNING = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
-WARNING.changeScale(1, ScaleAnchor.Middle)
-timer.after(4000, function () {
-    color.startFade(color.originalPalette, color.Black)
-    timer.after(2000, function () {
-        color.startFade(color.Black, color.originalPalette)
-        WARNING.setImage(assets.image`Modern Triangle`)
-        timer.after(2000, function () {
-            music.play(music.createSong(assets.song`ModernTriangle`), music.PlaybackMode.InBackground)
-            timer.after(4000, function () {
-                color.startFade(color.originalPalette, color.Black)
-                timer.after(2000, function () {
-                    Title = true
-                    Rated = false
-                    sprites.destroy(WARNING)
-                    color.startFade(color.Black, color.originalPalette)
-                    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
-                    TitleSprite.setPosition(80, 60)
-                    TitleSprite.changeScale(1, ScaleAnchor.Middle)
-                    animation.runImageAnimation(
-                    TitleSprite,
-                    assets.animation`Title Anim`,
-                    200,
-                    true
-                    )
-                    versionNumber = textsprite.create("v. 1.6.3")
-                    versionNumber.setPosition(25, 114)
-                    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
-                })
-            })
-        })
-    })
-})
+Beginnings = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
+Beginnings.changeScale(1, ScaleAnchor.Middle)
+FadeThings()
 game.onUpdateInterval(randint(500, 2000), function () {
     if (PlayingTime == true) {
         for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
