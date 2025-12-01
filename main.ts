@@ -839,7 +839,7 @@ BOSSTIME = false
 WarpTime = false
 PlayingTime = false
 color.startFade(color.Black, color.originalPalette)
-Level = 0
+Level = 5
 Rated = true
 Title = true
 Beginnings = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
