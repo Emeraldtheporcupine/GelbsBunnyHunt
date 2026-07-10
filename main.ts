@@ -15,247 +15,14 @@ namespace SpriteKind {
 namespace StatusBarKind {
     export const BossHealth = StatusBarKind.create()
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (sprite.vy - 8 > 0) {
-        music.setVolume(255)
-        music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-        info.changeScoreBy(-1)
-        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-        BunnyAmount += -1
-        for (let index = 0; index <= 30; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-        }
-        for (let index = 0; index <= 9; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
-        }
-        Gibblets.unshift(sprites.create(assets.image`EarPiece`, SpriteKind.Gibblets))
-        for (let GibbletSprite of Gibblets) {
-            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-            GibbletSprite.vy = randint(-150, -100)
-            GibbletSprite.ay = 400
-            GibbletSprite.vx = randint(-35, 35)
-            scene.cameraShake(2, 200)
-            timer.after(2500, function () {
-                sprites.destroy(GibbletSprite, effects.none, 0)
-            })
-        }
-        sprite.vy = -100
-        if (BunnyAmount == 0) {
-            if (Level < 4) {
-                music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
-            }
-            music.setVolume(100)
-            if (Level == 1) {
-                LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
-                LVL1key.setPosition(otherSprite.x, otherSprite.y)
-                LVL1key.vy = -100
-                LVL1key.ay = 400
-                LVL1key.vx = 20
-                animation.runImageAnimation(
-                LVL1key,
-                assets.animation`Key Spin`,
-                100,
-                true
-                )
-            }
-            if (Level == 4) {
-                music.play(music.createSong(assets.song`Portal Open`), music.PlaybackMode.InBackground)
-                scene.cameraFollowSprite(Portal)
-                timer.after(4000, function () {
-                    animation.runImageAnimation(
-                    Portal,
-                    assets.animation`sparkle`,
-                    100,
-                    true
-                    )
-                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 255, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 175, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 125, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 36, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-                    timer.after(1000, function () {
-                        WarpTime = true
-                        scene.cameraFollowSprite(Gelb)
-                    })
-                })
-            }
-        }
-        sprites.destroy(otherSprite, effects.none, 0)
-        music.setVolume(100)
-    } else {
-    	
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Spike, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
-    music.setVolume(255)
-    music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
-    sprite.vx = Direction * -50
-    sprite.vy = -150
-    sprites.destroy(otherSprite, effects.none, 0)
-    Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-    for (let index = 0; index <= 9; index++) {
-        Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-    }
-    for (let index = 0; index <= 5; index++) {
-        Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
-    }
-    for (let GibbletSprite of Gibblets) {
-        GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-        GibbletSprite.vy = randint(-150, -100)
-        GibbletSprite.ay = 400
-        GibbletSprite.vx = randint(-35, 35)
-        scene.cameraShake(2, 200)
-        timer.after(2500, function () {
-            sprites.destroy(GibbletSprite, effects.none, 0)
-        })
-    }
-    if (info.life() < 1) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
+    if (HasKey == true) {
+        HasKey = false
         music.stopAllSounds()
-        music.setVolume(255)
-        music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
-        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-        for (let index = 0; index <= 30; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-        }
-        for (let index = 0; index <= 10; index++) {
-            Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
-        }
-        for (let GibbletSprite of Gibblets) {
-            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-            GibbletSprite.vy = randint(-150, -100)
-            GibbletSprite.ay = 400
-            GibbletSprite.vx = randint(-35, 35)
-            scene.cameraShake(2, 200)
-            timer.after(2500, function () {
-                sprites.destroy(GibbletSprite, effects.none, 0)
-            })
-        }
-        sprites.destroy(sprite, effects.none, 0)
-        music.setVolume(100)
-        timer.after(4000, function () {
-            game.gameOver(false)
-        })
-    }
-})
-function Fade (ms: number, NextLevel: number, FadeWhite: number) {
-    timer.after(ms, function () {
-        if (FadeWhite == 1) {
-            color.startFade(color.originalPalette, color.White)
-        } else {
-            color.startFade(color.originalPalette, color.Black)
-        }
-        Level += NextLevel
-        if (FadeWhite == 1) {
-            timer.after(3000, function () {
-                color.startFade(color.White, color.originalPalette)
-                SetupLevel()
-            })
-        } else {
-            timer.after(2000, function () {
-                color.startFade(color.Black, color.originalPalette)
-                SetupLevel()
-            })
-        }
-    })
-}
-function TitleAppear () {
-    Title = true
-    Rated = false
-    sprites.destroy(Beginnings)
-    color.startFade(color.Black, color.originalPalette)
-    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
-    TitleSprite.setPosition(80, 60)
-    TitleSprite.changeScale(1, ScaleAnchor.Middle)
-    animation.runImageAnimation(
-    TitleSprite,
-    assets.animation`Title Anim`,
-    200,
-    true
-    )
-    versionNumber = textsprite.create("v. 1.7.0")
-    versionNumber.setPosition(25, 114)
-    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
-}
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprite.vx = -5
-    sprite.vy = -100
-    otherSprite.vx = 5
-    otherSprite.vy = 100
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSprite) {
-    if (WarpTime == true) {
-        WarpTime = false
-        tiles.placeOnTile(sprite, otherSprite.tilemapLocation())
-        scene.cameraFollowSprite(otherSprite)
-        controller.moveSprite(sprite, 0, 0)
-        animation.runImageAnimation(
-        otherSprite,
-        assets.animation`sparkleNextLevel`,
-        100,
-        true
-        )
-        timer.after(1000, function () {
-            sprite.ay = 0
-            sprite.vy = -5
-            Teleporter = sprites.create(img`
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                . . . . . . . . . . . . . . . . 
-                `, SpriteKind.FirstBeam)
-            animation.runImageAnimation(
-            Teleporter,
-            assets.animation`Laser`,
-            100,
-            true
-            )
-            tiles.placeOnTile(Teleporter, sprite.tilemapLocation())
-            Teleporter.y += -74
-            Fade(2000, 1, 1)
-        })
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
-    if (BOSSTIME == true) {
-        if (sprite.vy - 8 > 0) {
-            music.setVolume(255)
-            music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 1, 255, 0, 200, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
-            BaddieHealth.value += -2
-            Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
-            for (let index = 0; index <= 5; index++) {
-                Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
-            }
-            for (let index = 0; index <= 5; index++) {
-                Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
-            }
-            for (let GibbletSprite of Gibblets) {
-                GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
-                GibbletSprite.vy = randint(-150, -100)
-                GibbletSprite.ay = 400
-                GibbletSprite.vx = randint(-35, 35)
-                scene.cameraShake(2, 200)
-                timer.after(2500, function () {
-                    sprites.destroy(GibbletSprite, effects.none, 0)
-                })
-            }
-            sprite.vy = -175
-            music.setVolume(100)
-        }
-    } else {
-        sprite.vy = -175
-        sprite.vx = Direction * -200
+        controller.moveSprite(Gelb, 0, 0)
+        tiles.placeOnTile(Gelb, location)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
+        Fade(4000, 1, 0)
     }
 })
 statusbars.onZero(StatusBarKind.BossHealth, function (status) {
@@ -338,20 +105,132 @@ statusbars.onZero(StatusBarKind.BossHealth, function (status) {
         })
     })
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
-    scene.cameraFollowSprite(mySprite)
-    tiles.setTileAt(location, assets.tile`myTile6`)
-    Gelb.setStayInScreen(true)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
-    if (otherSprite.vy == 0) {
-        music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
-        HasKey = true
-        sprites.destroy(otherSprite)
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Title == true == (Rated == false)) {
+        Fade(0, 1, 0)
+        music.stopAllSounds()
+        music.setVolume(255)
+        music.play(music.createSoundEffect(WaveShape.Sawtooth, 1014, 1018, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        music.setVolume(100)
+        Title = false
+        timer.after(2000, function () {
+            PlayingTime = true
+            sprites.destroy(TitleSprite)
+            sprites.destroy(versionNumber)
+            Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
+            controller.moveSprite(Gelb, 75, 0)
+            Gelb.ay = 400
+            scene.cameraFollowSprite(Gelb)
+        })
     }
 })
-info.onLifeZero(function () {
-	
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, location) {
+    if (BunnyAmount == 0) {
+        BunnyAmount = 1
+        music.stopAllSounds()
+        controller.moveSprite(Gelb, 0, 0)
+        tiles.placeOnTile(Gelb, location)
+        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
+        Fade(4000, 1, 0)
+    }
+})
+function Fade (ms: number, NextLevel: number, FadeWhite: number) {
+    timer.after(ms, function () {
+        if (FadeWhite == 1) {
+            color.startFade(color.originalPalette, color.White)
+        } else {
+            color.startFade(color.originalPalette, color.Black)
+        }
+        Level += NextLevel
+        if (FadeWhite == 1) {
+            timer.after(3000, function () {
+                color.startFade(color.White, color.originalPalette)
+                SetupLevel()
+            })
+        } else {
+            timer.after(2000, function () {
+                color.startFade(color.Black, color.originalPalette)
+                SetupLevel()
+            })
+        }
+    })
+}
+function TitleAppear () {
+    Title = true
+    Rated = false
+    sprites.destroy(Beginnings)
+    color.startFade(color.Black, color.originalPalette)
+    TitleSprite = sprites.create(assets.image`Title`, SpriteKind.Screen)
+    TitleSprite.setPosition(80, 60)
+    TitleSprite.changeScale(1, ScaleAnchor.Middle)
+    animation.runImageAnimation(
+    TitleSprite,
+    assets.animation`Title Anim`,
+    200,
+    true
+    )
+    versionNumber = textsprite.create("v. 1.7.0")
+    versionNumber.setPosition(25, 114)
+    music.play(music.createSong(assets.song`TitleScreen`), music.PlaybackMode.InBackground)
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Title == false) {
+        if (Gelb.vy == 0) {
+            Gelb.vy = -175
+            music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        }
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Warp, function (sprite, otherSprite) {
+    if (WarpTime == true) {
+        WarpTime = false
+        tiles.placeOnTile(sprite, otherSprite.tilemapLocation())
+        scene.cameraFollowSprite(otherSprite)
+        controller.moveSprite(sprite, 0, 0)
+        animation.runImageAnimation(
+        otherSprite,
+        assets.animation`sparkleNextLevel`,
+        100,
+        true
+        )
+        timer.after(1000, function () {
+            sprite.ay = 0
+            sprite.vy = -5
+            Teleporter = sprites.create(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                `, SpriteKind.FirstBeam)
+            animation.runImageAnimation(
+            Teleporter,
+            assets.animation`Laser`,
+            100,
+            true
+            )
+            tiles.placeOnTile(Teleporter, sprite.tilemapLocation())
+            Teleporter.y += -74
+            Fade(2000, 1, 1)
+        })
+    }
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprite.vx = -5
+    sprite.vy = -100
+    otherSprite.vx = 5
+    otherSprite.vy = 100
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Beam, function (sprite, otherSprite) {
     if (Level == 5) {
@@ -360,7 +239,45 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Beam, function (sprite, otherSpr
         Fade(1000, 1, 1)
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Key, function (sprite, otherSprite) {
+    if (otherSprite.vy == 0) {
+        music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
+        HasKey = true
+        sprites.destroy(otherSprite)
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile21`, function (sprite, location) {
+    scene.cameraFollowSprite(mySprite)
+    tiles.setTileAt(location, assets.tile`myTile6`)
+    sprite.setStayInScreen(true)
+    music.stopAllSounds()
+    timer.after(1000, function () {
+        music.play(music.createSong(assets.song`FinalBoss`), music.PlaybackMode.LoopingInBackground)
+    })
+})
+info.onScore(0, function () {
+	
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
+    music.setVolume(255)
+    music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    sprites.destroy(otherSprite, effects.none, 0)
+    music.setVolume(40)
+})
 function SetupLevel () {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Spike)
+    sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Gibblets)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Screen)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Text)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Warp)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Beam)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Boss)
+    sprites.destroyAllSpritesOfKind(SpriteKind.StatusBar)
+    sprites.destroyAllSpritesOfKind(SpriteKind.screenCenter)
+    sprites.destroyAllSpritesOfKind(SpriteKind.warper)
     if (Level == 1) {
         HasKey = false
         scene.setBackgroundImage(assets.image`LVL one`)
@@ -371,8 +288,6 @@ function SetupLevel () {
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Field`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -380,7 +295,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            75,
             true
             )
         }
@@ -407,8 +322,6 @@ function SetupLevel () {
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Shed`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -416,7 +329,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            75,
             true
             )
         }
@@ -443,8 +356,6 @@ function SetupLevel () {
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Burrow`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -452,7 +363,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            75,
             true
             )
         }
@@ -491,9 +402,6 @@ function SetupLevel () {
         music.setVolume(50)
         music.play(music.createSong(assets.song`The Factory`), music.PlaybackMode.LoopingInBackground)
         music.setVolume(100)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-        sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
         for (let ShovelToBe of tiles.getTilesByType(assets.tile`Shovel goes here`)) {
             ShovelCollectable = sprites.create(assets.image`Shovel`, SpriteKind.Shovel)
             tiles.placeOnTile(ShovelCollectable, ShovelToBe)
@@ -501,7 +409,7 @@ function SetupLevel () {
             animation.runImageAnimation(
             ShovelCollectable,
             assets.animation`Shovel Spin`,
-            100,
+            75,
             true
             )
         }
@@ -533,9 +441,6 @@ function SetupLevel () {
         tiles.placeOnTile(Gelb, tiles.getTileLocation(8, 6))
         scroller.setBackgroundScrollOffset(-40, 0)
         scroller.setCameraScrollingMultipliers(0, 0)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Shovel)
-        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-        sprites.destroyAllSpritesOfKind(SpriteKind.BEBE)
         scroller.setCameraScrollingMultipliers(0.1, 0)
         timer.after(2000, function () {
             BOSSTIME = true
@@ -621,56 +526,71 @@ function SetupLevel () {
     info.setScore(sprites.allOfKind(SpriteKind.Enemy).length)
     BunnyAmount = sprites.allOfKind(SpriteKind.Enemy).length
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Title == true == (Rated == false)) {
-        Fade(0, 1, 0)
-        music.stopAllSounds()
-        music.setVolume(255)
-        music.play(music.createSoundEffect(WaveShape.Sawtooth, 1014, 1018, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-        music.setVolume(100)
-        Title = false
-        timer.after(2000, function () {
-            PlayingTime = true
-            sprites.destroy(TitleSprite)
-            sprites.destroy(versionNumber)
-            Gelb = sprites.create(assets.image`Gelb R`, SpriteKind.Player)
-            controller.moveSprite(Gelb, 75, 0)
-            Gelb.ay = 400
-            scene.cameraFollowSprite(Gelb)
-        })
-    }
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Shed Carrot`, function (sprite, location) {
-    if (HasKey == true) {
-        HasKey = false
-        music.stopAllSounds()
-        controller.moveSprite(Gelb, 0, 0)
-        tiles.placeOnTile(Gelb, location)
-        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        Fade(4000, 1, 0)
-    }
-})
 sprites.onOverlap(SpriteKind.BEBE, SpriteKind.BEBE, function (sprite, otherSprite) {
     sprite.vx = -35
     sprite.vy = -150
     otherSprite.vx = 35
     otherSprite.vy = -150
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Burrow`, function (sprite, location) {
-    if (BunnyAmount == 0) {
-        BunnyAmount = 1
-        music.stopAllSounds()
-        controller.moveSprite(Gelb, 0, 0)
-        tiles.placeOnTile(Gelb, location)
-        music.play(music.createSong(assets.song`Level End`), music.PlaybackMode.InBackground)
-        Fade(4000, 1, 0)
-    }
+info.onLifeZero(function () {
+	
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Shovel, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Spike, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
     music.setVolume(255)
-    music.play(music.createSoundEffect(WaveShape.Noise, 1, 5000, 255, 0, 100, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+    music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+    sprite.vx = Direction * -50
+    sprite.vy = -150
     sprites.destroy(otherSprite, effects.none, 0)
-    music.setVolume(40)
+    Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+    for (let index = 0; index <= 9; index++) {
+        Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+    }
+    for (let index = 0; index <= 5; index++) {
+        Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
+    }
+    for (let GibbletSprite of Gibblets) {
+        GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+        GibbletSprite.vy = randint(-150, -100)
+        GibbletSprite.ay = 400
+        GibbletSprite.vx = randint(-35, 35)
+        scene.cameraShake(2, 200)
+        timer.after(2500, function () {
+            sprites.destroy(GibbletSprite, effects.none, 0)
+        })
+    }
+    music.setVolume(100)
+    if (info.life() < 1) {
+        music.stopAllSounds()
+        music.setVolume(255)
+        music.play(music.createSoundEffect(WaveShape.Noise, 1179, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+        for (let index = 0; index <= 30; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+        }
+        for (let index = 0; index <= 10; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble Skin`, SpriteKind.Gibblets))
+        }
+        for (let GibbletSprite of Gibblets) {
+            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+            GibbletSprite.vy = randint(-150, -100)
+            GibbletSprite.ay = 400
+            GibbletSprite.vx = randint(-35, 35)
+            scene.cameraShake(2, 200)
+            timer.after(2500, function () {
+                sprites.destroy(GibbletSprite, effects.none, 0)
+            })
+        }
+        sprites.destroy(sprite)
+        music.setVolume(100)
+        timer.after(4000, function () {
+            Gelb = sprites.create(assets.image`Gelb L`, SpriteKind.Player)
+            Gelb.setImage(assets.image`Gelb L`)
+            controller.moveSprite(Gelb, 75, 0)
+            info.setLife(3)
+            SetupLevel()
+        })
+    }
 })
 function FadeThings () {
     timer.after(4000, function () {
@@ -789,14 +709,6 @@ function Away_from_Player () {
         }
     }
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Title == false) {
-        if (Gelb.vy == 0) {
-            Gelb.vy = -175
-            music.play(music.createSoundEffect(WaveShape.Noise, 2140, 4160, 255, 0, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
-        }
-    }
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite, location) {
     if (BunnyAmount == 0) {
         BunnyAmount = 1
@@ -807,27 +719,125 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Pillar End`, function (sprite
         Fade(4000, 1, 0)
     }
 })
-info.onScore(0, function () {
-	
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (sprite.vy - 8 > 0) {
+        music.setVolume(255)
+        music.play(music.createSoundEffect(WaveShape.Noise, 315, 286, 255, 255, 200, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
+        info.changeScoreBy(-1)
+        Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+        BunnyAmount += -1
+        for (let index = 0; index <= 30; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+        }
+        for (let index = 0; index <= 9; index++) {
+            Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
+        }
+        Gibblets.unshift(sprites.create(assets.image`EarPiece`, SpriteKind.Gibblets))
+        for (let GibbletSprite of Gibblets) {
+            GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+            GibbletSprite.vy = randint(-150, -100)
+            GibbletSprite.ay = 400
+            GibbletSprite.vx = randint(-35, 35)
+            scene.cameraShake(2, 200)
+            timer.after(2500, function () {
+                sprites.destroy(GibbletSprite, effects.none, 0)
+            })
+        }
+        sprite.vy = -100
+        if (BunnyAmount == 0) {
+            if (Level < 4) {
+                music.play(music.createSong(assets.song`Found Key`), music.PlaybackMode.InBackground)
+            }
+            music.setVolume(100)
+            if (Level == 1) {
+                LVL1key = sprites.create(assets.image`Key`, SpriteKind.Key)
+                LVL1key.setPosition(otherSprite.x, otherSprite.y)
+                LVL1key.vy = -100
+                LVL1key.ay = 400
+                LVL1key.vx = 20
+                animation.runImageAnimation(
+                LVL1key,
+                assets.animation`Key Spin`,
+                100,
+                true
+                )
+            }
+            if (Level == 4) {
+                music.play(music.createSong(assets.song`Portal Open`), music.PlaybackMode.InBackground)
+                scene.cameraFollowSprite(Portal)
+                timer.after(4000, function () {
+                    animation.runImageAnimation(
+                    Portal,
+                    assets.animation`sparkle`,
+                    100,
+                    true
+                    )
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 255, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 175, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 125, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    music.play(music.createSoundEffect(WaveShape.Triangle, 2865, 5000, 36, 0, 100, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
+                    timer.after(1000, function () {
+                        WarpTime = true
+                        scene.cameraFollowSprite(Gelb)
+                    })
+                })
+            }
+        }
+        sprites.destroy(otherSprite, effects.none, 0)
+        music.setVolume(100)
+    } else {
+    	
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSprite) {
+    if (BOSSTIME == true) {
+        if (sprite.vy - 8 > 0) {
+            music.setVolume(255)
+            music.play(music.createSoundEffect(WaveShape.Sawtooth, 1, 1, 255, 0, 200, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), music.PlaybackMode.InBackground)
+            BaddieHealth.value += -2
+            Gibblets = [sprites.create(assets.image`Gibble`, SpriteKind.Gibblets)]
+            for (let index = 0; index <= 5; index++) {
+                Gibblets.unshift(sprites.create(assets.image`Gibble`, SpriteKind.Gibblets))
+            }
+            for (let index = 0; index <= 5; index++) {
+                Gibblets.unshift(sprites.create(assets.image`Gibble Fur`, SpriteKind.Gibblets))
+            }
+            for (let GibbletSprite of Gibblets) {
+                GibbletSprite.setPosition(otherSprite.x, otherSprite.y)
+                GibbletSprite.vy = randint(-150, -100)
+                GibbletSprite.ay = 400
+                GibbletSprite.vx = randint(-35, 35)
+                scene.cameraShake(2, 200)
+                timer.after(2500, function () {
+                    sprites.destroy(GibbletSprite, effects.none, 0)
+                })
+            }
+            sprite.vy = -175
+            music.setVolume(100)
+        }
+    } else {
+        sprite.vy = -175
+        sprite.vx = Direction * -200
+    }
 })
 let Randomizer = 0
+let LVL1key: Sprite = null
+let Gibblets: Sprite[] = []
+let Direction = 0
 let SpikerKill: Sprite = null
+let Portal: Sprite = null
 let Baby: Sprite = null
 let Bunny: Sprite = null
 let ShovelCollectable: Sprite = null
-let HasKey = false
 let mySprite: Sprite = null
-let bigBADbunbun: Sprite = null
-let BaddieHealth: StatusBarSprite = null
-let Teleporter: Sprite = null
+let BunnyAmount = 0
 let versionNumber: TextSprite = null
 let TitleSprite: Sprite = null
-let Direction = 0
+let Teleporter: Sprite = null
+let bigBADbunbun: Sprite = null
+let BaddieHealth: StatusBarSprite = null
 let Gelb: Sprite = null
-let Portal: Sprite = null
-let LVL1key: Sprite = null
-let BunnyAmount = 0
-let Gibblets: Sprite[] = []
+let HasKey = false
 let Beginnings: Sprite = null
 let Title = false
 let Rated = false
@@ -845,6 +855,42 @@ Title = true
 Beginnings = sprites.create(assets.image`Rated PG13`, SpriteKind.Screen)
 Beginnings.changeScale(1, ScaleAnchor.Middle)
 FadeThings()
+game.onUpdate(function () {
+    if (PlayingTime == true) {
+        if (Gelb.vx > 0) {
+            Direction = 1
+            Gelb.setImage(assets.image`Gelb R`)
+        } else if (Gelb.vx < 0) {
+            Direction = -1
+            Gelb.setImage(assets.image`Gelb L`)
+        }
+    }
+})
+game.onUpdate(function () {
+    if (PlayingTime == true) {
+        for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
+            if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Right")
+                }
+            } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
+                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
+                    sprites.setDataString(BunnyToRun, "Jump", "Left")
+                }
+            }
+        }
+    }
+})
+game.onUpdateInterval(randint(100, 1000), function () {
+    if (PlayingTime == true) {
+        for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.BEBE)) {
+            if (BEBE_BUN_KILL.vy == 0) {
+                BEBE_BUN_KILL.vx = randint(-50, 50)
+                BEBE_BUN_KILL.vy = -150
+            }
+        }
+    }
+})
 game.onUpdateInterval(randint(500, 2000), function () {
     if (PlayingTime == true) {
         for (let BunnyToJump of sprites.allOfKind(SpriteKind.Enemy)) {
@@ -889,42 +935,6 @@ game.onUpdateInterval(1350, function () {
             Towards_Player()
         } else if (Randomizer == 2) {
             Away_from_Player()
-        }
-    }
-})
-game.onUpdate(function () {
-    if (PlayingTime == true) {
-        if (Gelb.vx > 0) {
-            Direction = 1
-            Gelb.setImage(assets.image`Gelb R`)
-        } else if (Gelb.vx < 0) {
-            Direction = -1
-            Gelb.setImage(assets.image`Gelb L`)
-        }
-    }
-})
-game.onUpdate(function () {
-    if (PlayingTime == true) {
-        for (let BunnyToRun of sprites.allOfKind(SpriteKind.Enemy)) {
-            if (Gelb.x - BunnyToRun.x < 50 && Gelb.x - BunnyToRun.x > 0) {
-                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                    sprites.setDataString(BunnyToRun, "Jump", "Right")
-                }
-            } else if (Gelb.x - BunnyToRun.x > -50 && Gelb.x - BunnyToRun.x < 0) {
-                if (Math.abs(Gelb.y - BunnyToRun.y) < 50 && true) {
-                    sprites.setDataString(BunnyToRun, "Jump", "Left")
-                }
-            }
-        }
-    }
-})
-game.onUpdateInterval(randint(100, 1000), function () {
-    if (PlayingTime == true) {
-        for (let BEBE_BUN_KILL of sprites.allOfKind(SpriteKind.BEBE)) {
-            if (BEBE_BUN_KILL.vy == 0) {
-                BEBE_BUN_KILL.vx = randint(-50, 50)
-                BEBE_BUN_KILL.vy = -150
-            }
         }
     }
 })
